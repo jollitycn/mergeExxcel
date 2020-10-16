@@ -8,11 +8,11 @@ using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using NPOI.HSSF.UserModel;
 using System.Data;
-using System.Data.OleDb;
-using JieXi.Common;
+using System.Data.OleDb; 
 using CellType = NPOI.SS.UserModel.CellType;
 using JGNet.Common;
-using JGNet.Common.Core.Util;
+using CJBasic;
+using JieXi.Common;
 
 namespace MergeExcel
 {
@@ -94,7 +94,7 @@ namespace MergeExcel
             try
             {
 
-                CJBasic.CbGeneric cb = new CJBasic.CbGeneric(this.DoShowUnCheck);
+                CbGeneric cb = new CbGeneric(this.DoShowUnCheck);
                 cb.BeginInvoke(null, null);
                 ShowProgressForm();
             }
@@ -477,7 +477,7 @@ namespace MergeExcel
             }
             else
             { 
-                dataMergedView1.DataSource=NPOIHelper.FormatToDatatable(writeBook, 0);
+                dataMergedView1.DataSource= NPOIHelper.FormatToDatatable(writeBook, 0);
                 CompleteProgress();
             }
         }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MergeExcel</RootNamespace>
     <AssemblyName>MergeExcel</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -31,7 +31,7 @@
     <PublisherName>洪思帆</PublisherName>
     <SuiteName>考勤</SuiteName>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -101,23 +101,23 @@
     <Reference Include="EPPlus">
       <HintPath>D:\GSM_Conver_Tool\EPPlus.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.0.8, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.3.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="NPOI, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPOI.2.5.1\lib\net40\NPOI.dll</HintPath>
+    <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.HPSF">
       <HintPath>D:\NPOI\npoi\NPOI.HPSF.dll</HintPath>
     </Reference>
-    <Reference Include="NPOI.OOXML, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPOI.2.5.1\lib\net40\NPOI.OOXML.dll</HintPath>
+    <Reference Include="NPOI.OOXML, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OOXML.dll</HintPath>
     </Reference>
-    <Reference Include="NPOI.OpenXml4Net, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPOI.2.5.1\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
     </Reference>
-    <Reference Include="NPOI.OpenXmlFormats, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPOI.2.5.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="Spire.License, Version=1.3.8.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
       <HintPath>..\packages\FreeSpire.XLS.10.1.0\lib\net40\Spire.License.dll</HintPath>
@@ -138,8 +138,18 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="zxing, Version=0.16.4.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\zxing.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mergeexcel1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mergeexcel1.Designer.cs">
+      <DependentUpon>Mergeexcel1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mergeexcel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +158,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Mergeexcel1.resx">
+      <DependentUpon>Mergeexcel1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mergeexcel.resx">
       <DependentUpon>Mergeexcel.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -174,6 +188,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="考勤\1.xlsx" />
+    <None Include="考勤\2.xlsx" />
+    <None Include="考勤\2020年10.1-10.13.xlsx" />
+    <None Include="考勤\2020年8月考勤（本部+ODC）4%281%29 - 副本.xlsx" />
+    <None Include="考勤\2020年8月考勤（本部+ODC）4%281%29.xlsx" />
+    <None Include="考勤\总部考勤模板（18年）%28第三版%29.xls" />
+    <None Include="考勤\新表单.xlsx" />
+    <None Include="考勤\本部+ODC打卡时间表-20201001-20201013.xlsx" />
+    <None Include="考勤\深圳市网新新思软件有限公司_打卡时间表_20200801-20200831%286%29%281%29%281%29.xlsx" />
+    <None Include="考勤\考勤\2020年8月考勤（本部+ODC）4.xlsm" />
+    <None Include="考勤\考勤\2020年8月考勤（本部+ODC）4.xlsx" />
+    <None Include="考勤\考勤\总部考勤模板（18年）%28第三版%29.xls" />
+    <None Include="考勤\考勤\新表单.xlsx" />
+    <None Include="考勤\考勤\深圳市网新新思软件有限公司_打卡时间表_20200801-20200831%286%29%281%29%281%29.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="VBIDE">
@@ -264,6 +292,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="使用说明.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="D:\BaiduNetdiskDownload\CostumeERP_20200928\JGNet\CJBasic\CJBasic.csproj">
       <Project>{414E1D01-F1BD-4F9C-A00D-10549EE5DB68}</Project>
       <Name>CJBasic</Name>
@@ -276,9 +310,6 @@
       <Project>{94ABC99C-89EC-44FA-8A0E-59FF3EAE4D62}</Project>
       <Name>JGNet.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

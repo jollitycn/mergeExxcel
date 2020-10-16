@@ -38,121 +38,127 @@ namespace MergeExcel
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mergeexcel));
-            this.btnOpen = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnOpreat = new System.Windows.Forms.Button();
-            this.openPath = new System.Windows.Forms.TextBox();
-            this.savePath = new System.Windows.Forms.TextBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.openPath2 = new System.Windows.Forms.TextBox();
-            this.btnOpen2 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label1 = new CCWin.SkinControl.SkinLabel();
-            this.skinPanel2 = new CCWin.SkinControl.SkinPanel();
+            this.skinToolStrip1 = new CCWin.SkinControl.SkinToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.skinPanel1 = new CCWin.SkinControl.SkinPanel();
             this.dataMergedView1 = new CJBasic.Widget.DataMergedView();
-            this.skinPanel2.SuspendLayout();
+            this.skinPanel2 = new CCWin.SkinControl.SkinPanel();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnOpen = new System.Windows.Forms.Button();
+            this.label1 = new CCWin.SkinControl.SkinLabel();
+            this.btnOpreat = new System.Windows.Forms.Button();
+            this.openPath2 = new System.Windows.Forms.TextBox();
+            this.openPath = new System.Windows.Forms.TextBox();
+            this.btnOpen2 = new System.Windows.Forms.Button();
+            this.savePath = new System.Windows.Forms.TextBox();
+            this.skinToolStrip1.SuspendLayout();
             this.skinPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataMergedView1)).BeginInit();
+            this.skinPanel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnOpen
-            // 
-            this.btnOpen.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnOpen.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnOpen.Location = new System.Drawing.Point(40, 11);
-            this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(75, 25);
-            this.btnOpen.TabIndex = 0;
-            this.btnOpen.Text = "考勤模板";
-            this.btnOpen.UseMnemonic = false;
-            this.btnOpen.UseVisualStyleBackColor = true;
-            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSave.Location = new System.Drawing.Point(39, 95);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(76, 25);
-            this.btnSave.TabIndex = 1;
-            this.btnSave.Text = "保存路径";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnOpreat
-            // 
-            this.btnOpreat.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnOpreat.Location = new System.Drawing.Point(40, 142);
-            this.btnOpreat.Name = "btnOpreat";
-            this.btnOpreat.Size = new System.Drawing.Size(75, 38);
-            this.btnOpreat.TabIndex = 2;
-            this.btnOpreat.Text = "开始操作";
-            this.btnOpreat.UseVisualStyleBackColor = true;
-            this.btnOpreat.Click += new System.EventHandler(this.btnOpreat_Click);
-            // 
-            // openPath
-            // 
-            this.openPath.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.openPath.Location = new System.Drawing.Point(121, 12);
-            this.openPath.Multiline = true;
-            this.openPath.Name = "openPath";
-            this.openPath.Size = new System.Drawing.Size(400, 24);
-            this.openPath.TabIndex = 3;
-            // 
-            // savePath
-            // 
-            this.savePath.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.savePath.Location = new System.Drawing.Point(121, 95);
-            this.savePath.Multiline = true;
-            this.savePath.Name = "savePath";
-            this.savePath.Size = new System.Drawing.Size(400, 25);
-            this.savePath.TabIndex = 4;
             // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
-            // openPath2
-            // 
-            this.openPath2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.openPath2.Location = new System.Drawing.Point(120, 53);
-            this.openPath2.Multiline = true;
-            this.openPath2.Name = "openPath2";
-            this.openPath2.Size = new System.Drawing.Size(401, 24);
-            this.openPath2.TabIndex = 6;
-            // 
-            // btnOpen2
-            // 
-            this.btnOpen2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnOpen2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnOpen2.Location = new System.Drawing.Point(39, 52);
-            this.btnOpen2.Name = "btnOpen2";
-            this.btnOpen2.Size = new System.Drawing.Size(75, 25);
-            this.btnOpen2.TabIndex = 5;
-            this.btnOpen2.Text = "考勤记录";
-            this.btnOpen2.UseMnemonic = false;
-            this.btnOpen2.UseVisualStyleBackColor = true;
-            this.btnOpen2.Click += new System.EventHandler(this.btnOpen2_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // label1
+            // skinToolStrip1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.BorderColor = System.Drawing.Color.White;
-            this.label1.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.ForeColor = System.Drawing.Color.Lime;
-            this.label1.Location = new System.Drawing.Point(521, 149);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 19);
-            this.label1.TabIndex = 7;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.skinToolStrip1.Arrow = System.Drawing.Color.Black;
+            this.skinToolStrip1.AutoSize = false;
+            this.skinToolStrip1.Back = System.Drawing.Color.White;
+            this.skinToolStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.skinToolStrip1.BackRadius = 4;
+            this.skinToolStrip1.BackRectangle = new System.Drawing.Rectangle(10, 10, 10, 10);
+            this.skinToolStrip1.Base = System.Drawing.Color.Transparent;
+            this.skinToolStrip1.BaseFore = System.Drawing.Color.Black;
+            this.skinToolStrip1.BaseForeAnamorphosis = false;
+            this.skinToolStrip1.BaseForeAnamorphosisBorder = 4;
+            this.skinToolStrip1.BaseForeAnamorphosisColor = System.Drawing.Color.White;
+            this.skinToolStrip1.BaseForeOffset = new System.Drawing.Point(0, 0);
+            this.skinToolStrip1.BaseHoverFore = System.Drawing.Color.White;
+            this.skinToolStrip1.BaseItemAnamorphosis = true;
+            this.skinToolStrip1.BaseItemBorder = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.skinToolStrip1.BaseItemBorderShow = true;
+            this.skinToolStrip1.BaseItemDown = ((System.Drawing.Image)(resources.GetObject("skinToolStrip1.BaseItemDown")));
+            this.skinToolStrip1.BaseItemHover = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.skinToolStrip1.BaseItemMouse = ((System.Drawing.Image)(resources.GetObject("skinToolStrip1.BaseItemMouse")));
+            this.skinToolStrip1.BaseItemNorml = null;
+            this.skinToolStrip1.BaseItemPressed = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.skinToolStrip1.BaseItemRadius = 4;
+            this.skinToolStrip1.BaseItemRadiusStyle = CCWin.SkinClass.RoundStyle.All;
+            this.skinToolStrip1.BaseItemSplitter = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.skinToolStrip1.BindTabControl = null;
+            this.skinToolStrip1.DropDownImageSeparator = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
+            this.skinToolStrip1.Fore = System.Drawing.Color.Black;
+            this.skinToolStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 4, 2);
+            this.skinToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.skinToolStrip1.HoverFore = System.Drawing.Color.White;
+            this.skinToolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.skinToolStrip1.ItemAnamorphosis = true;
+            this.skinToolStrip1.ItemBorder = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.skinToolStrip1.ItemBorderShow = true;
+            this.skinToolStrip1.ItemHover = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.skinToolStrip1.ItemPressed = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.skinToolStrip1.ItemRadius = 4;
+            this.skinToolStrip1.ItemRadiusStyle = CCWin.SkinClass.RoundStyle.All;
+            this.skinToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1});
+            this.skinToolStrip1.Location = new System.Drawing.Point(4, 28);
+            this.skinToolStrip1.Name = "skinToolStrip1";
+            this.skinToolStrip1.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
+            this.skinToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.skinToolStrip1.ShowItemToolTips = false;
+            this.skinToolStrip1.Size = new System.Drawing.Size(739, 56);
+            this.skinToolStrip1.SkinAllColor = true;
+            this.skinToolStrip1.TabIndex = 14;
+            this.skinToolStrip1.Text = "skinToolStrip1";
+            this.skinToolStrip1.TitleAnamorphosis = true;
+            this.skinToolStrip1.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(228)))), ((int)(((byte)(236)))));
+            this.skinToolStrip1.TitleRadius = 4;
+            this.skinToolStrip1.TitleRadiusStyle = CCWin.SkinClass.RoundStyle.All;
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(36, 53);
+            this.toolStripButton1.Text = "toolStripButton1";
+            // 
+            // skinPanel1
+            // 
+            this.skinPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.skinPanel1.Controls.Add(this.dataMergedView1);
+            this.skinPanel1.Controls.Add(this.skinPanel2);
+            this.skinPanel1.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.skinPanel1.DownBack = null;
+            this.skinPanel1.Location = new System.Drawing.Point(4, 84);
+            this.skinPanel1.MouseBack = null;
+            this.skinPanel1.Name = "skinPanel1";
+            this.skinPanel1.NormlBack = null;
+            this.skinPanel1.Size = new System.Drawing.Size(739, 395);
+            this.skinPanel1.TabIndex = 15;
+            // 
+            // dataMergedView1
+            // 
+            this.dataMergedView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataMergedView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataMergedView1.Location = new System.Drawing.Point(0, 184);
+            this.dataMergedView1.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control;
+            this.dataMergedView1.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("dataMergedView1.MergeColumnNames")));
+            this.dataMergedView1.Name = "dataMergedView1";
+            this.dataMergedView1.RowTemplate.Height = 23;
+            this.dataMergedView1.Size = new System.Drawing.Size(739, 211);
+            this.dataMergedView1.TabIndex = 11;
             // 
             // skinPanel2
             // 
@@ -169,61 +175,120 @@ namespace MergeExcel
             this.skinPanel2.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.skinPanel2.DownBack = null;
-            this.skinPanel2.Location = new System.Drawing.Point(4, 28);
+            this.skinPanel2.Location = new System.Drawing.Point(0, 0);
             this.skinPanel2.MouseBack = null;
             this.skinPanel2.Name = "skinPanel2";
             this.skinPanel2.NormlBack = null;
-            this.skinPanel2.Size = new System.Drawing.Size(539, 183);
+            this.skinPanel2.Size = new System.Drawing.Size(739, 184);
             this.skinPanel2.TabIndex = 10;
             // 
-            // skinPanel1
+            // btnSave
             // 
-            this.skinPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.skinPanel1.Controls.Add(this.dataMergedView1);
-            this.skinPanel1.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.skinPanel1.DownBack = null;
-            this.skinPanel1.Location = new System.Drawing.Point(4, 211);
-            this.skinPanel1.MouseBack = null;
-            this.skinPanel1.Name = "skinPanel1";
-            this.skinPanel1.NormlBack = null;
-            this.skinPanel1.Size = new System.Drawing.Size(539, 92);
-            this.skinPanel1.TabIndex = 11;
+            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSave.Location = new System.Drawing.Point(139, 96);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(76, 25);
+            this.btnSave.TabIndex = 1;
+            this.btnSave.Text = "保存路径";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // dataMergedView1
+            // btnOpen
             // 
-            this.dataMergedView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataMergedView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataMergedView1.Location = new System.Drawing.Point(0, 0);
-            this.dataMergedView1.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control;
-            this.dataMergedView1.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("dataMergedView1.MergeColumnNames")));
-            this.dataMergedView1.Name = "dataMergedView1";
-            this.dataMergedView1.RowTemplate.Height = 23;
-            this.dataMergedView1.Size = new System.Drawing.Size(539, 92);
-            this.dataMergedView1.TabIndex = 9;
+            this.btnOpen.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnOpen.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnOpen.Location = new System.Drawing.Point(140, 12);
+            this.btnOpen.Name = "btnOpen";
+            this.btnOpen.Size = new System.Drawing.Size(75, 25);
+            this.btnOpen.TabIndex = 0;
+            this.btnOpen.Text = "考勤模板";
+            this.btnOpen.UseMnemonic = false;
+            this.btnOpen.UseVisualStyleBackColor = true;
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BorderColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.ForeColor = System.Drawing.Color.Lime;
+            this.label1.Location = new System.Drawing.Point(621, 150);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 19);
+            this.label1.TabIndex = 7;
+            // 
+            // btnOpreat
+            // 
+            this.btnOpreat.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnOpreat.Location = new System.Drawing.Point(140, 143);
+            this.btnOpreat.Name = "btnOpreat";
+            this.btnOpreat.Size = new System.Drawing.Size(75, 38);
+            this.btnOpreat.TabIndex = 2;
+            this.btnOpreat.Text = "开始操作";
+            this.btnOpreat.UseVisualStyleBackColor = true;
+            this.btnOpreat.Click += new System.EventHandler(this.btnOpreat_Click);
+            // 
+            // openPath2
+            // 
+            this.openPath2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.openPath2.Location = new System.Drawing.Point(220, 54);
+            this.openPath2.Multiline = true;
+            this.openPath2.Name = "openPath2";
+            this.openPath2.Size = new System.Drawing.Size(401, 24);
+            this.openPath2.TabIndex = 6;
+            // 
+            // openPath
+            // 
+            this.openPath.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.openPath.Location = new System.Drawing.Point(221, 13);
+            this.openPath.Multiline = true;
+            this.openPath.Name = "openPath";
+            this.openPath.Size = new System.Drawing.Size(400, 24);
+            this.openPath.TabIndex = 3;
+            // 
+            // btnOpen2
+            // 
+            this.btnOpen2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnOpen2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnOpen2.Location = new System.Drawing.Point(139, 53);
+            this.btnOpen2.Name = "btnOpen2";
+            this.btnOpen2.Size = new System.Drawing.Size(75, 25);
+            this.btnOpen2.TabIndex = 5;
+            this.btnOpen2.Text = "考勤记录";
+            this.btnOpen2.UseMnemonic = false;
+            this.btnOpen2.UseVisualStyleBackColor = true;
+            this.btnOpen2.Click += new System.EventHandler(this.btnOpen2_Click);
+            // 
+            // savePath
+            // 
+            this.savePath.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.savePath.Location = new System.Drawing.Point(221, 96);
+            this.savePath.Multiline = true;
+            this.savePath.Name = "savePath";
+            this.savePath.Size = new System.Drawing.Size(400, 25);
+            this.savePath.TabIndex = 4;
             // 
             // Mergeexcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 307);
+            this.ClientSize = new System.Drawing.Size(747, 483);
             this.Controls.Add(this.skinPanel1);
-            this.Controls.Add(this.skinPanel2);
+            this.Controls.Add(this.skinToolStrip1);
             this.Name = "Mergeexcel";
             this.Text = "合并表格";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.mergeexcel_Load);
-            dataGridViewPagingSumCtrl = new DataGridViewPagingSumCtrl((DataGridView)dataMergedView1);
+            this.skinToolStrip1.ResumeLayout(false);
+            this.skinToolStrip1.PerformLayout();
+            this.skinPanel1.ResumeLayout(false);
+            this.skinPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataMergedView1)).EndInit();
             this.skinPanel2.ResumeLayout(false);
             this.skinPanel2.PerformLayout();
-            this.skinPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataMergedView1)).EndInit();
             this.ResumeLayout(false);
-            dataGridViewPagingSumCtrl.Initialize();
-            s = resources.GetString("String1");
-            y = resources.GetString("String2");
-            g = resources.GetString("String3");
-            a = resources.GetString("String4");
 
         }
         private String s;
@@ -232,22 +297,23 @@ namespace MergeExcel
         private String a;
         private String s4 = String.Empty;
         #endregion
-
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnOpreat;
-        private System.Windows.Forms.TextBox openPath;
-        private System.Windows.Forms.TextBox savePath;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.Button btnOpen;
-        private System.Windows.Forms.TextBox openPath2;
-        private System.Windows.Forms.Button btnOpen2;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private SkinLabel label1;
-        private SkinPanel skinPanel2;
+        private DataGridViewPagingSumCtrl dataGridViewPagingSumCtrl;
+        private SkinToolStrip skinToolStrip1;
         private SkinPanel skinPanel1;
         private CJBasic.Widget.DataMergedView dataMergedView1;
-        private DataGridViewPagingSumCtrl dataGridViewPagingSumCtrl;
+        private SkinPanel skinPanel2;
+        private Button btnSave;
+        private Button btnOpen;
+        private SkinLabel label1;
+        private Button btnOpreat;
+        private TextBox openPath2;
+        private TextBox openPath;
+        private Button btnOpen2;
+        private TextBox savePath;
+        private ToolStripButton toolStripButton1;
     }
 
 

@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergeExcel", "MergeExcel\MergeExcel.csproj", "{C5A4AFEE-4F28-4598-8640-1E95D0D9442B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JGNet.Common", "D:\BaiduNetdiskDownload\CostumeERP_20200928\JGNet\JGNet.Common\JGNet.Common.csproj", "{2BF356C7-F1F4-4447-ABA8-D0F23DBD99DD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JGNet.Core", "D:\BaiduNetdiskDownload\CostumeERP_20200928\JGNet\JGNet.Core\JGNet.Core.csproj", "{94ABC99C-89EC-44FA-8A0E-59FF3EAE4D62}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CJBasic", "D:\BaiduNetdiskDownload\CostumeERP_20200928\JGNet\CJBasic\CJBasic.csproj", "{414E1D01-F1BD-4F9C-A00D-10549EE5DB68}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CJFramework", "D:\BaiduNetdiskDownload\CostumeERP_20200928\JGNet\CJFramework\CJFramework.csproj", "{922F10FC-080A-4FB4-AE93-2041B807A749}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JGNet.Common", "D:\BaiduNetdiskDownload\CostumeERP_20200928\JGNet\JGNet.Common\JGNet.Common.csproj", "{2BF356C7-F1F4-4447-ABA8-D0F23DBD99DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JGNet.Core", "D:\BaiduNetdiskDownload\CostumeERP_20200928\JGNet\JGNet.Core\JGNet.Core.csproj", "{94ABC99C-89EC-44FA-8A0E-59FF3EAE4D62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +27,18 @@ Global
 		{C5A4AFEE-4F28-4598-8640-1E95D0D9442B}.Release|Any CPU.ActiveCfg = Release|x86
 		{C5A4AFEE-4F28-4598-8640-1E95D0D9442B}.Release|x86.ActiveCfg = Release|x86
 		{C5A4AFEE-4F28-4598-8640-1E95D0D9442B}.Release|x86.Build.0 = Release|x86
+		{414E1D01-F1BD-4F9C-A00D-10549EE5DB68}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{414E1D01-F1BD-4F9C-A00D-10549EE5DB68}.Debug|x86.ActiveCfg = Debug|x86
+		{414E1D01-F1BD-4F9C-A00D-10549EE5DB68}.Debug|x86.Build.0 = Debug|x86
+		{414E1D01-F1BD-4F9C-A00D-10549EE5DB68}.Release|Any CPU.ActiveCfg = Release|x86
+		{414E1D01-F1BD-4F9C-A00D-10549EE5DB68}.Release|x86.ActiveCfg = Release|x86
+		{414E1D01-F1BD-4F9C-A00D-10549EE5DB68}.Release|x86.Build.0 = Release|x86
+		{922F10FC-080A-4FB4-AE93-2041B807A749}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{922F10FC-080A-4FB4-AE93-2041B807A749}.Debug|x86.ActiveCfg = Debug|x86
+		{922F10FC-080A-4FB4-AE93-2041B807A749}.Debug|x86.Build.0 = Debug|x86
+		{922F10FC-080A-4FB4-AE93-2041B807A749}.Release|Any CPU.ActiveCfg = Release|x86
+		{922F10FC-080A-4FB4-AE93-2041B807A749}.Release|x86.ActiveCfg = Release|x86
+		{922F10FC-080A-4FB4-AE93-2041B807A749}.Release|x86.Build.0 = Release|x86
 		{2BF356C7-F1F4-4447-ABA8-D0F23DBD99DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2BF356C7-F1F4-4447-ABA8-D0F23DBD99DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BF356C7-F1F4-4447-ABA8-D0F23DBD99DD}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -43,18 +55,6 @@ Global
 		{94ABC99C-89EC-44FA-8A0E-59FF3EAE4D62}.Release|Any CPU.Build.0 = Release|Any CPU
 		{94ABC99C-89EC-44FA-8A0E-59FF3EAE4D62}.Release|x86.ActiveCfg = Release|Any CPU
 		{94ABC99C-89EC-44FA-8A0E-59FF3EAE4D62}.Release|x86.Build.0 = Release|Any CPU
-		{414E1D01-F1BD-4F9C-A00D-10549EE5DB68}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{414E1D01-F1BD-4F9C-A00D-10549EE5DB68}.Debug|x86.ActiveCfg = Debug|x86
-		{414E1D01-F1BD-4F9C-A00D-10549EE5DB68}.Debug|x86.Build.0 = Debug|x86
-		{414E1D01-F1BD-4F9C-A00D-10549EE5DB68}.Release|Any CPU.ActiveCfg = Release|x86
-		{414E1D01-F1BD-4F9C-A00D-10549EE5DB68}.Release|x86.ActiveCfg = Release|x86
-		{414E1D01-F1BD-4F9C-A00D-10549EE5DB68}.Release|x86.Build.0 = Release|x86
-		{922F10FC-080A-4FB4-AE93-2041B807A749}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{922F10FC-080A-4FB4-AE93-2041B807A749}.Debug|x86.ActiveCfg = Debug|x86
-		{922F10FC-080A-4FB4-AE93-2041B807A749}.Debug|x86.Build.0 = Debug|x86
-		{922F10FC-080A-4FB4-AE93-2041B807A749}.Release|Any CPU.ActiveCfg = Release|x86
-		{922F10FC-080A-4FB4-AE93-2041B807A749}.Release|x86.ActiveCfg = Release|x86
-		{922F10FC-080A-4FB4-AE93-2041B807A749}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MergeExcel1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -15,7 +16,7 @@ namespace MergeExcel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Mergeexcel());
+            Application.Run(new Mergeexcel1());
         }
     }
 }
