@@ -1,4 +1,6 @@
-﻿using NPOI.SS.UserModel;
+﻿using CCWin.SkinControl;
+using CJBasic.CJBasic.Helpers;
+using NPOI.SS.UserModel;
 using System;
 using System.Collections.Generic;
 
@@ -7,6 +9,7 @@ namespace MergeExcel
     //}
     partial class Mergeexcel
     {
+       
         /// <summary>
         /// 必需的设计器变量。
         /// </summary>
@@ -33,6 +36,7 @@ namespace MergeExcel
         /// </summary>
         private void InitializeComponent()
         {
+          
             this.btnOpen = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnOpreat = new System.Windows.Forms.Button();
@@ -43,7 +47,8 @@ namespace MergeExcel
             this.openPath2 = new System.Windows.Forms.TextBox();
             this.btnOpen2 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label1 = new CCWin.SkinControl.SkinLabel();
+      
             this.SuspendLayout();
             // 
             // btnOpen
@@ -70,7 +75,7 @@ namespace MergeExcel
             // 
             // btnOpreat
             // 
-            this.btnOpreat.Location = new System.Drawing.Point(34, 167);
+            this.btnOpreat.Location = new System.Drawing.Point(441, 158);
             this.btnOpreat.Name = "btnOpreat";
             this.btnOpreat.Size = new System.Drawing.Size(75, 38);
             this.btnOpreat.TabIndex = 2;
@@ -125,12 +130,15 @@ namespace MergeExcel
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BorderColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.ForeColor = System.Drawing.Color.Lime;
             this.label1.Location = new System.Drawing.Point(147, 177);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 19);
             this.label1.TabIndex = 7;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Mergeexcel
             // 
@@ -149,11 +157,24 @@ namespace MergeExcel
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "合并表格";
             this.Load += new System.EventHandler(this.mergeexcel_Load);
+            //this.Text= ManagementHelper.getMacAddr_Local();
+
+            ////helper = new ManagementHelper();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mergeexcel));
+            s = resources.GetString("String1");
+            y = resources.GetString("String2");
+            g = resources.GetString("String3");
+            a = resources.GetString("String4");
             this.ResumeLayout(false);
             this.PerformLayout();
 
-        }
 
+        }
+        private String s;
+        private String y;
+        private String g;
+        private String a;
+        private String s4 = String.Empty;
         #endregion
 
         private System.Windows.Forms.Button btnSave;
@@ -166,7 +187,7 @@ namespace MergeExcel
         private System.Windows.Forms.TextBox openPath2;
         private System.Windows.Forms.Button btnOpen2;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Label label1;
+        private SkinLabel label1;
     }
 
 

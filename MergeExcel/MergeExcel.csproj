@@ -25,9 +25,15 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <SupportUrl>https://blog.csdn.net/jasonhongcn</SupportUrl>
+    <ErrorReportUrl>https://blog.csdn.net/jasonhongcn</ErrorReportUrl>
+    <PublisherName>洪思帆</PublisherName>
+    <SuiteName>考勤</SuiteName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>false</BootstrapperEnabled>
   </PropertyGroup>
@@ -41,6 +47,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>ConcurrencyRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -59,7 +66,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>MergeExcel_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <DelaySign>true</DelaySign>
@@ -85,6 +93,9 @@
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>..\packages\Portable.BouncyCastle.1.8.6\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="CSkin">
+      <HintPath>D:\BaiduNetdiskDownload\CostumeERP_20200928\CostumeERP\dlls\CSkin.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus">
       <HintPath>D:\GSM_Conver_Tool\EPPlus.dll</HintPath>
@@ -138,6 +149,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Mergeexcel.resx">
       <DependentUpon>Mergeexcel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -150,7 +162,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
-    <None Include="MergeExcel_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -250,6 +261,23 @@
       <ProductName>Visual C++ "14" Runtime Libraries %28x86%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\BaiduNetdiskDownload\CostumeERP_20200928\JGNet\CJBasic\CJBasic.csproj">
+      <Project>{414E1D01-F1BD-4F9C-A00D-10549EE5DB68}</Project>
+      <Name>CJBasic</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\BaiduNetdiskDownload\CostumeERP_20200928\JGNet\JGNet.Common\JGNet.Common.csproj">
+      <Project>{2BF356C7-F1F4-4447-ABA8-D0F23DBD99DD}</Project>
+      <Name>JGNet.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\BaiduNetdiskDownload\CostumeERP_20200928\JGNet\JGNet.Core\JGNet.Core.csproj">
+      <Project>{94ABC99C-89EC-44FA-8A0E-59FF3EAE4D62}</Project>
+      <Name>JGNet.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

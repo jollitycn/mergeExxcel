@@ -7,7 +7,10 @@ using System.IO;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using NPOI.HSSF.UserModel;
-using BorderStyle = NPOI.SS.UserModel.BorderStyle;
+using System.Data;
+using System.Data.OleDb;
+using JieXi.Common;
+using CellType = NPOI.SS.UserModel.CellType;
 
 namespace MergeExcel
 {
@@ -167,7 +170,7 @@ namespace MergeExcel
                 //    label1.Text = "请选择正确文件";
                 //}
                 // writeBook.Write(writeFile);
-                //var workbook2 = new XSSFWorkbook(fs2);
+                //var workbook2 = new XSSFWorkbook(fy);
 
                 //FileStream fsRead = System.IO.File.OpenRead(localSavePath);
                 //IWorkbook wkcopy = getPath(localSavePath, fsRead);
@@ -205,8 +208,11 @@ namespace MergeExcel
                 {
                     for (int i = 0; i < item.LastCellNum - 1; i++)
                     {
-                        item.Cells[i].SetCellType(CellType.String);
-                        if (item.Cells[i].StringCellValue.Trim().Equals("姓名"))
+
+                        if (item.Cells[i].CellType != CellType.String)
+                            continue;
+                            //item.Cells[i].SetCellType(CellType.String);
+                            if (item.Cells[i].StringCellValue.Trim().Equals("姓名"))
                         {
                             PartCell = item.Cells[i].ColumnIndex;
                         }
@@ -215,8 +221,8 @@ namespace MergeExcel
                             changeColumn = item.Cells[i].ColumnIndex;
                         }
                         
-                        item.Cells[i].SetCellType(CellType.String);
-                        if (headrow.Cells[i].StringCellValue.Trim().Equals("备注"))
+                       // item.Cells[i].SetCellType(CellType.String);
+                        if (item.Cells[i].StringCellValue.Trim().Equals("备注"))
                         {
                             remarkCell =  item.Cells[i].ColumnIndex;
                         }
@@ -269,8 +275,8 @@ namespace MergeExcel
                 //    }
                 //}
 
-                //workbook2.Write(fs2);
-                //fs2.Close();
+                //workbook2.Write(fy);
+                //fy.Close();
 
 
                 using (FileStream fsRead2 = System.IO.File.OpenRead(localOpenPath2))
@@ -351,19 +357,15 @@ namespace MergeExcel
                                 if (row2 == null) { continue; }
                                 row2.GetCell(PartCell).SetCellType(CellType.String);
                                 md = row2.GetCell(PartCell).StringCellValue;
-
+                                IRow row = null;
                                 try
                                 {
-                                    IRow row = myDictionary[md];
-                                    getPath(row, row2, holiday, changeColumn-1, remarkCell);
+                                    row = myDictionary[md];
+
                                 }
-                                catch (Exception ex)
-                                {
-                                    //label1.ForeColor = Color.Red;
-                                    //label1.Text = ex.Message;
-                                    getPath(null, row2, holiday, changeColumn - 1, remarkCell);
-                                    // throw new Exception("找不到人员考勤记录： "+ md);
-                                }
+                                catch 
+                                {    }
+                                getPath(md, row, row2, holiday, changeColumn - 1, remarkCell);
                             }
                         }
 
@@ -381,6 +383,7 @@ namespace MergeExcel
                         // writeBook.w
                         //writeBook.
                         writeBook.Write(writeFile);
+                       dataMergedView1.DataSource =  NPOIHelper.FormatToDatatable(writeBook,0);
                         writeFile.Close();
                         label1.Text = "保存成功";
                     }
@@ -436,166 +439,185 @@ namespace MergeExcel
             }
 
         }
+        
+        private void getPath(String md,IRow rows, IRow row2, List<int> holiday,int dayEnd, int remark)
+        { 
+                int start = 8;
+                int end = dayEnd;
+                int workStart = 6;
+                int workEnd = 36;
+                //
+                //int remark = 41;
 
-        private void getPath(IRow rows, IRow row2, List<int> holiday,int dayEnd, int remark)
-        {
-            int start = 8;
-            int end = dayEnd;
-            int workStart = 6;
-            int workEnd = 36;
-            //
-            //int remark = 41;
 
+                row2.GetCell(remark).SetCellValue(String.Empty);
 
-            row2.GetCell(remark).SetCellValue(String.Empty);
-
-            foreach (var item in row2.Cells)
-            {
-
-                //.Name = "Wingdings";
-
-                //   item.SetCellValue(" ");
-                if (item.ColumnIndex >= start && item.ColumnIndex <= end)
-                {
-                    if (holiday.Contains(item.ColumnIndex))
-                    {
-                        item.SetCellValue(String.Empty);
-                    }
-                    else
-                    {
-                        item.SetCellValue("口");
-                    }
-                    //item.SetCellValue(String.Empty);
-                }
-            }
-
-            if (rows != null)
-            {
-                for (int i = 0; i < row2.Cells.Count; i++)
+                foreach (var item in row2.Cells)
                 {
 
-                    ICell item = row2.Cells[i];
-                    //item.SetCellType(CellType.String); 
+                    //.Name = "Wingdings";
 
-
-                    if (item.ColumnIndex >= start && item.ColumnIndex <= end && !holiday.Contains(item.ColumnIndex))
+                    //   item.SetCellValue(" ");
+                    if (item.ColumnIndex >= start && item.ColumnIndex <= end)
                     {
-
-                        //判断迟到早退
-                        //row2.
-                        item.SetCellValue("√");
-
-                        //获取时间
-                        String times = rows.Cells[workStart + item.ColumnIndex - start].StringCellValue;
-                        if (String.IsNullOrEmpty(times))
+                        if (holiday.Contains(item.ColumnIndex))
                         {
-                            //item.
-                            //  item.SetCellType(CellType.String);
-                            item.SetCellValue("口");
-                            //   row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号旷工");
-
+                            item.SetCellValue(String.Empty);
                         }
                         else
                         {
-                            String[] timeArrays = times.Split('\n');
-
-                            String beginTime = "口";
-                            String endTime = "口";
-                            String timeFirst = null;
-                            String timeEnd = null;
-                            if (timeArrays.Length < 2)
+                            item.SetCellValue(g);
+                            if (md.Equals(a) || md.Equals(""))
                             {
-                                timeFirst = timeArrays[0].Trim().Replace(":", "");
-                                // timeEnd = timeFirst;
-                            }
-                            else
-                            {
-                                timeFirst = timeArrays[0].Trim().Replace(":", "");
-                                timeEnd = timeArrays[timeArrays.Length - 1].Trim().Replace(":", "");
-                            }
-
-
-                            if (Int32.Parse(timeFirst) <= 1200 && Int32.Parse(timeFirst) > 901)
-                            {
-                                beginTime = "♀";
-                                row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号迟到" + (Int32.Parse(timeFirst) - 900) + "分钟");
-
-                            }
-                            else if (Int32.Parse(timeFirst) >= 1200 && Int32.Parse(timeFirst) < 1300 || Int32.Parse(timeFirst) > 1800 || Int32.Parse(timeFirst) < 1800 && Int32.Parse(timeFirst) >= 1300)
-                            {
-                                beginTime = "口";
-                                //row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号缺卡");
-                            }
-                            else
-                            {
-                                beginTime = "√";
-                            }
-
-                            if (String.IsNullOrEmpty(timeEnd))
-                            {
-                                if (Int32.Parse(timeFirst) > 1800)
-                                {
-                                    endTime = "√";
-                                }
-                            }
-                            else
-                            {//Int32.Parse(timeEnd) < 1800 && Int32.Parse(timeEnd) > 1300 
-
-                                if (Int32.Parse(timeEnd) > 900 && Int32.Parse(timeEnd) < 1800)
-                                {
-                                    //if (Int32.Parse(timeEnd) > 1530 && Int32.Parse(timeEnd) < 1800)
-                                    //{
-                                    endTime = "♀";
-                                    row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号早退" + (1800 - Int32.Parse(timeEnd)) + "分钟");
-                                    //}
-                                    //else {
-                                    //    //
-                                    //    endTime = "";
-                                    //}
-                                }
-                                else if (Int32.Parse(timeEnd) < 1800 && Int32.Parse(timeEnd) > 1300 || (Int32.Parse(timeEnd) > 600 && Int32.Parse(timeEnd) < 900))
-                                {
-                                    //有记录就不算旷工
-                                    endTime = "口";
-                                    //  row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号缺卡");
-                                }
-                                else
-
-                                {
-                                    endTime = "√";
-                                }
-                            }
-
-
-
-
-
-
-                            //加班
-                            //if (holiday.Contains(item.ColumnIndex))
-                            //{
-                            //    item.SetCellValue(" ");
-                            //    //if (!beginTime.Equals("口") && !endTime.Equals("口")) { 
-                            //    //row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue +"\n" + (item.ColumnIndex-start+1)+ "日加班");
-                            //    //}
-                            //}
-                            // item.SetCellType(CellType.String);
-                            item.SetCellValue(beginTime + "\n" + endTime);
-                            if (beginTime.Equals("√") && endTime.Equals("√"))
-                            {
-                                item.SetCellValue("√");
+                                item.SetCellValue(g);
+                                return;
                             }
                         }
+                    //获取时间
+                    String times = null;
+                    //try
+                    //{
+                    //    times = row2.Cells[workStart + item.ColumnIndex - start].StringCellValue;
+                    //}
+                    //catch { item.SetCellValue(String.Empty); continue; }
 
-                        //   // item.SetCellValue("♀");
-
-                        //   //if () { 
-                        //   //}
-                    }
+                }
                 }
 
-            }
-        }
+                if (rows != null)
+                {
+                    for (int i = 0; i < row2.Cells.Count; i++)
+                    {
+
+                        ICell item = row2.Cells[i];
+                        //item.SetCellType(CellType.String); 
+
+
+                        if (item.ColumnIndex >= start && item.ColumnIndex <= end && !holiday.Contains(item.ColumnIndex))
+                        {
+
+                            //判断迟到早退
+                            //row2.
+                             item.SetCellValue(String.Empty);
+
+                        //获取时间
+                        String times = null;
+                        try
+                        {
+                            times = rows.Cells[workStart + item.ColumnIndex - start].StringCellValue;
+                        }
+                        catch { item.SetCellValue(String.Empty); continue; }
+
+                            if (String.IsNullOrEmpty(times))
+                            {
+                                //item.
+                                //  item.SetCellType(CellType.String);
+                                item.SetCellValue(g);
+                                //   row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号旷工");
+
+                            }
+                            else
+                            {
+                                String[] timeArrays = times.Split('\n');
+
+                                String beginTime = g;
+                                String endTime = g;
+                                String timeFirst = null;
+                                String timeEnd = null;
+                                if (timeArrays.Length < 2)
+                                {
+                                    timeFirst = timeArrays[0].Trim().Replace(":", "");
+                                    // timeEnd = timeFirst;
+                                }
+                                else
+                                {
+                                    timeFirst = timeArrays[0].Trim().Replace(":", "");
+                                    timeEnd = timeArrays[timeArrays.Length - 1].Trim().Replace(":", "");
+                                }
+
+
+                                if (Int32.Parse(timeFirst) <= 1200 && Int32.Parse(timeFirst) > 901)
+                                {
+                                    beginTime = s;
+                                    row2.GetCell(remark).SetCellValue(row2.GetCell(remark).StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号迟到" + (Int32.Parse(timeFirst) - 900) + "分钟");
+
+                                }
+                                else if (Int32.Parse(timeFirst) >= 1200 && Int32.Parse(timeFirst) < 1300 || Int32.Parse(timeFirst) > 1800 || Int32.Parse(timeFirst) < 1800 && Int32.Parse(timeFirst) >= 1300)
+                                {
+                                    beginTime = g;
+                                    //row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号缺卡");
+                                }
+                                else
+                                {
+                                    beginTime = y;
+                                }
+
+                                if (String.IsNullOrEmpty(timeEnd))
+                                {
+                                    if (Int32.Parse(timeFirst) > 1800)
+                                    {
+                                        endTime = y;
+                                    }
+                                }
+                                else
+                                {//Int32.Parse(timeEnd) < 1800 && Int32.Parse(timeEnd) > 1300 
+
+                                    if (Int32.Parse(timeEnd) > 900 && Int32.Parse(timeEnd) < 1800)
+                                    {
+                                        //if (Int32.Parse(timeEnd) > 1530 && Int32.Parse(timeEnd) < 1800)
+                                        //{
+                                        endTime = s;
+                                        row2.GetCell(remark).SetCellValue(row2.GetCell(remark).StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号早退" + (1800 - Int32.Parse(timeEnd)) + "分钟");
+                                        //}
+                                        //else {
+                                        //    //
+                                        //    endTime = "";
+                                        //}
+                                    }
+                                    else if (Int32.Parse(timeEnd) < 1800 && Int32.Parse(timeEnd) > 1300 || (Int32.Parse(timeEnd) > 600 && Int32.Parse(timeEnd) < 900))
+                                    {
+                                        //有记录就不算旷工
+                                        endTime =g;
+                                        //  row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号缺卡");
+                                    }
+                                    else
+
+                                    {
+                                        endTime = y;
+                                    }
+                                }
+
+
+
+
+
+
+                                //加班
+                                //if (holiday.Contains(item.ColumnIndex))
+                                //{
+                                //    item.SetCellValue(" ");
+                                //    //if (!beginTime.Equals("口") && !endTime.Equals("口")) { 
+                                //    //row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue +"\n" + (item.ColumnIndex-start+1)+ "日加班");
+                                //    //}
+                                //}
+                                // item.SetCellType(CellType.String);
+                                item.SetCellValue(beginTime + "\n" + endTime);
+                                if (beginTime.Equals(y) && endTime.Equals(y))
+                                {
+                                    item.SetCellValue(y);
+                                }
+                            }
+
+                            //   // item.SetCellValue("♀");
+
+                            //   //if () { 
+                            //   //}
+                        }
+                    }
+
+                }
+          
+}
 
 
         //判断Excel文件类型
@@ -632,6 +654,9 @@ namespace MergeExcel
 
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
