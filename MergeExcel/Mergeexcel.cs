@@ -11,10 +11,12 @@ using System.Data;
 using System.Data.OleDb;
 using JieXi.Common;
 using CellType = NPOI.SS.UserModel.CellType;
+using JGNet.Common;
+using JGNet.Common.Core.Util;
 
 namespace MergeExcel
 {
-    public partial class Mergeexcel : Form
+    public partial class Mergeexcel : BaseForm
     {
 
         //本地打开文件夹路径
@@ -85,11 +87,34 @@ namespace MergeExcel
             localSavePath = saveFileDialog1.FileName;//文件路径
         }
 
+
         //开始操作按钮
         private void btnOpreat_Click(object sender, EventArgs e)
         {
             try
             {
+
+                CJBasic.CbGeneric cb = new CJBasic.CbGeneric(this.DoShowUnCheck);
+                cb.BeginInvoke(null, null);
+                ShowProgressForm();
+            }
+            catch (Exception ex)
+            {
+
+                ShowError(ex);
+            }
+            finally
+            {
+                CompleteProgress();
+                UnLockPage();
+            }
+        }
+
+            private void DoShowUnCheck() {
+            IWorkbook writeBook = null;
+            try
+            {
+                 
                 label1.Text = string.Empty;
 
                 FileInfo newFile = new FileInfo(localSavePath);
@@ -105,7 +130,7 @@ namespace MergeExcel
                 //  StreamReader sr = new StreamReader(fs, System.Text.Encoding.Default);
                 ////读取Bom表
                 //  FileStream fsRead = System.IO.File.OpenRead(localOpenPath);
-                IWorkbook writeBook = getPath(localOpenPath, fsRead);
+                 writeBook = getPath(localOpenPath, fsRead);
                 //var sheet = writeBook.GetSheetAt(0);
 
 
@@ -349,6 +374,8 @@ namespace MergeExcel
                                     holiday.Add(cell.ColumnIndex);
                                 }
                             }
+
+                            InitProgress(sheetcopy2.LastRowNum + 1 - 4);
                             for (int r = 4; r < sheetcopy2.LastRowNum + 1; r++)
                             {
                                 IRow row2 = sheetcopy2.GetRow(r);
@@ -361,7 +388,7 @@ namespace MergeExcel
                                 try
                                 {
                                     row = myDictionary[md];
-
+                                    UpdateProgress(md);
                                 }
                                 catch 
                                 {    }
@@ -383,19 +410,20 @@ namespace MergeExcel
                         // writeBook.w
                         //writeBook.
                         writeBook.Write(writeFile);
-                       dataMergedView1.DataSource =  NPOIHelper.FormatToDatatable(writeBook,0);
                         writeFile.Close();
-                        label1.Text = "保存成功";
+                        
+                        UpdateProgress( "保存成功");
                     }
                     catch (Exception ex)
                     {
-                        label1.ForeColor = Color.Red;
-                        label1.Text = ex.Message;
+                        //label1.ForeColor = Color.Red;
+                        ShowError(ex);
                     }
                     finally
                     {
                         fsRead.Close();
-                        fsRead2.Close();
+                        fsRead2.Close(); 
+                        Complete(writeBook);
                     }
 
 
@@ -434,12 +462,26 @@ namespace MergeExcel
                     //}
                 }
             }
-            catch(Exception ex) { 
-                label1.Text = ex.Message; 
+            catch(Exception ex) {
+                ShowError(ex);
+             //   label1.Text = ex.Message; 
             }
 
         }
-        
+
+        private void Complete(IWorkbook writeBook)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new CJBasic.CbGeneric<IWorkbook>(this.Complete), writeBook);
+            }
+            else
+            { 
+                dataMergedView1.DataSource=NPOIHelper.FormatToDatatable(writeBook, 0);
+                CompleteProgress();
+            }
+        }
+
         private void getPath(String md,IRow rows, IRow row2, List<int> holiday,int dayEnd, int remark)
         { 
                 int start = 8;
@@ -562,7 +604,7 @@ namespace MergeExcel
                                 else
                                 {//Int32.Parse(timeEnd) < 1800 && Int32.Parse(timeEnd) > 1300 
 
-                                    if (Int32.Parse(timeEnd) > 900 && Int32.Parse(timeEnd) < 1800)
+                                    if (Int32.Parse(timeEnd) > 1700 && Int32.Parse(timeEnd) < 1800)
                                     {
                                         //if (Int32.Parse(timeEnd) > 1530 && Int32.Parse(timeEnd) < 1800)
                                         //{

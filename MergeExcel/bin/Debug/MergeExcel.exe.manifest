@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="MergeExcel.exe" version="1.0.0.3" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
+  <asmv1:assemblyIdentity name="MergeExcel.exe" version="1.0.0.4" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
   <application />
   <entryPoint>
     <assemblyIdentity name="MergeExcel" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
@@ -53,14 +53,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CJBasic.dll" size="439296">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CJBasic.dll" size="438784">
       <assemblyIdentity name="CJBasic" version="0.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>a2ZMYd0wgqZM06J0xVdYwgCqyyw=</dsig:DigestValue>
+        <dsig:DigestValue>DrQ7q4LwgaMPGZd6zWbZRuuKiw0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -72,7 +72,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Z5DUgEHWYK6YLTVkmonmGGoHyUE=</dsig:DigestValue>
+        <dsig:DigestValue>2CJ3NwGro7VYX5/91k+H95+EHMk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -168,7 +168,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Wf0S+tSFRaNAflnKXelUsQz3dds=</dsig:DigestValue>
+        <dsig:DigestValue>3RU1LCNN6cBFOlviMg/5UbP4Muk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -180,7 +180,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>fk1oy90BSzBUdp+p/zTNRuEuMK0=</dsig:DigestValue>
+        <dsig:DigestValue>bId4gC0KNsNFeBP/QQoFwUCuAkE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -197,14 +197,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MergeExcel.exe" size="19408">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MergeExcel.exe" size="21456">
       <assemblyIdentity name="MergeExcel" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>irZMdEJyJHBzuSZD3lnjUp33ztc=</dsig:DigestValue>
+        <dsig:DigestValue>UJb+oghszLfu/YLaqhq2Y3Dd90w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
