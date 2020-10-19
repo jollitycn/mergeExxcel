@@ -44,7 +44,6 @@ namespace MergeExcel
             this.skinToolStrip1 = new CCWin.SkinControl.SkinToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.skinPanel1 = new CCWin.SkinControl.SkinPanel();
-            this.dataMergedView1 = new CJBasic.Widget.DataMergedView();
             this.skinPanel2 = new CCWin.SkinControl.SkinPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -57,10 +56,11 @@ namespace MergeExcel
             this.openPath = new System.Windows.Forms.TextBox();
             this.btnOpen2 = new System.Windows.Forms.Button();
             this.savePath = new System.Windows.Forms.TextBox();
+            this.dataMergedView1 = new CJBasic.Widget.DataMergedView();
             this.skinToolStrip1.SuspendLayout();
             this.skinPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataMergedView1)).BeginInit();
             this.skinPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataMergedView1)).BeginInit();
             this.SuspendLayout();
             // 
             // saveFileDialog1
@@ -138,6 +138,7 @@ namespace MergeExcel
             // 
             // skinPanel1
             // 
+            this.skinPanel1.AutoSize = true;
             this.skinPanel1.BackColor = System.Drawing.Color.Transparent;
             this.skinPanel1.Controls.Add(this.dataMergedView1);
             this.skinPanel1.Controls.Add(this.skinPanel2);
@@ -150,18 +151,6 @@ namespace MergeExcel
             this.skinPanel1.NormlBack = null;
             this.skinPanel1.Size = new System.Drawing.Size(739, 429);
             this.skinPanel1.TabIndex = 15;
-            // 
-            // dataMergedView1
-            // 
-            this.dataMergedView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataMergedView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataMergedView1.Location = new System.Drawing.Point(0, 209);
-            this.dataMergedView1.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control;
-            this.dataMergedView1.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("dataMergedView1.MergeColumnNames")));
-            this.dataMergedView1.Name = "dataMergedView1";
-            this.dataMergedView1.RowTemplate.Height = 23;
-            this.dataMergedView1.Size = new System.Drawing.Size(739, 220);
-            this.dataMergedView1.TabIndex = 11;
             // 
             // skinPanel2
             // 
@@ -307,6 +296,18 @@ namespace MergeExcel
             this.savePath.Size = new System.Drawing.Size(400, 25);
             this.savePath.TabIndex = 4;
             // 
+            // dataMergedView1
+            // 
+            this.dataMergedView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataMergedView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataMergedView1.Location = new System.Drawing.Point(0, 209);
+            this.dataMergedView1.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control;
+            this.dataMergedView1.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("dataMergedView1.MergeColumnNames")));
+            this.dataMergedView1.Name = "dataMergedView1";
+            this.dataMergedView1.RowTemplate.Height = 23;
+            this.dataMergedView1.Size = new System.Drawing.Size(739, 220);
+            this.dataMergedView1.TabIndex = 11;
+            // 
             // Mergeexcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -322,10 +323,19 @@ namespace MergeExcel
             this.skinToolStrip1.PerformLayout();
             this.skinPanel1.ResumeLayout(false);
             this.skinPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataMergedView1)).EndInit();
             this.skinPanel2.ResumeLayout(false);
             this.skinPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataMergedView1)).EndInit();
+            this.dataGridViewPagingSumCtrl = new DataGridViewPagingSumCtrl(dataMergedView1);
+            this.dataGridViewPagingSumCtrl.Initialize();
+          //  System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mergeexcel));
+            s = resources.GetString("String1");
+            y = resources.GetString("String2");
+            g = resources.GetString("String3");
+            a = resources.GetString("String4");
+
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
         private String s;
@@ -340,7 +350,6 @@ namespace MergeExcel
         private DataGridViewPagingSumCtrl dataGridViewPagingSumCtrl;
         private SkinToolStrip skinToolStrip1;
         private SkinPanel skinPanel1;
-        private CJBasic.Widget.DataMergedView dataMergedView1;
         private SkinPanel skinPanel2;
         private Button btnSave;
         private Button btnOpen;
@@ -354,6 +363,7 @@ namespace MergeExcel
         private Button button1;
         private DateTimePicker dateTimePicker1;
         private Label label2;
+        private CJBasic.Widget.DataMergedView dataMergedView1;
     }
 
 

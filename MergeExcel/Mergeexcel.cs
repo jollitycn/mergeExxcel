@@ -15,6 +15,7 @@ using CJBasic;
 using JieXi.Common;
 using CJBasic.Helpers;
 using CJBasic.CJBasic.Helpers;
+using CCWin.SkinClass;
 
 namespace MergeExcel
 {
@@ -366,19 +367,62 @@ namespace MergeExcel
                                 }
                             }
 
-                            IRow rowTitle = sheetcopy2.GetRow(0);
-                            List<int> holiday = new List<int>();
-                            foreach (ICell cell in rowTitle.Cells)
+                            //d
+                             List<int> holiday = new List<int>();
+                            //foreach (ICell cell in rowTitle.Cells)
+                            //{
+                            //    cell.SetCellType(CellType.String);
+                            //    if (cell.StringCellValue.Equals("假"))
+                            //    {
+                            //        holiday.Add(cell.ColumnIndex);
+                            //    }
+                            //}
+
+                            //计算是不是周六周日，还有法定节假日
+                            List<HolidayList> holidayLists=HolidayHelper.GetHolidayMonth(dateTimePicker1.Value.Year, dateTimePicker1.Value.Month);
+                            foreach (var item in holidayLists)
                             {
-                                cell.SetCellType(CellType.String);
-                                if (cell.StringCellValue.Equals("假"))
-                                {
-                                    holiday.Add(cell.ColumnIndex);
+                                if (item.status == 1) { 
+                               String [] days= item.date.Split('-');
+                                    int day = Int32.Parse(days[days.Length - 1]);
+                                    if(!holiday.Contains(day))
+                                    {
+                                        holiday.Add(day);
+                                    }
                                 }
                             }
 
-                            //计算是不是周六周日，还有法定节假日
-                            HolidayHelper.GetHolidayMonth(dateTimePicker1.Value.Year, dateTimePicker1.Value.Month);
+                            for (int i = 0; i < 31; i++ )
+                            {
+
+                                DateTime date = DateTime.Parse(dateTimePicker1.Value.Year + "-" + dateTimePicker1.Value.Month + "-" + (i + 1));
+                                if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
+                                {
+                                    if (date.Month == dateTimePicker1.Value.Month)
+                                    {
+                                        if (!holiday.Contains(date.Day))
+                                        {
+                                            holiday.Add(date.Day);
+                                        }
+                                    }
+                                }
+                            }
+                            IRow rowTitle = sheetcopy2.GetRow(0);
+
+
+                            for( int i = 8; i < changeColumn - 1; i++ )
+                            {
+                                var cell = rowTitle.Cells[i- 1];
+                                // cell.set
+                                 
+                                cell.SetCellValue(String.Empty);
+                                if (holiday.Contains(i - 8 + 1))
+                                {
+                                    cell.SetCellValue("假");
+                                }  
+                                
+                                      
+                                } 
                             InitProgress(sheetcopy2.LastRowNum + 1 - 4);
                             for (int r = 4; r < sheetcopy2.LastRowNum + 1; r++)
                             {

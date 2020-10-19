@@ -60,7 +60,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1UzL10a1mUvjo8dAizt6K0DQxbyj6yMIGf4wW8VmgXQ=</dsig:DigestValue>
+        <dsig:DigestValue>sw6LlXuEDskVsUKFQVMOj4ncozFOoX4K8qUuz2Hy24A=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -72,7 +72,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MwU2w7FWjRlBretL/UfWGMIaAwgAa3iqir/1Lx6oXdY=</dsig:DigestValue>
+        <dsig:DigestValue>X3+2e64+E6BOQn8r6zwGm3eVuWPWVIihuKBVwGQ78Ts=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -168,7 +168,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>a4EcuR3fUgvjfewIkDB4r3HdQgdEGjK314Wcp7JYBqw=</dsig:DigestValue>
+        <dsig:DigestValue>BxheBZTEnYioWCPo8xQwI545T0ikUHjqYe4x0RWchn0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -180,7 +180,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>xUtiSb0+C3qdbeX2PSL3yRJeQJGOfSZziXp047bPM00=</dsig:DigestValue>
+        <dsig:DigestValue>mPLxj+bZOXEas5qK3/Ub5JuFWsVi2U7+JBZQf+GBTXo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -197,14 +197,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MergeExcel.exe" size="34816">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MergeExcel.exe" size="35328">
       <assemblyIdentity name="MergeExcel" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>/Rsi1fYXf1NdyswooPSeOf7yEMWiVAig92K8cj49JLg=</dsig:DigestValue>
+        <dsig:DigestValue>EQOI13kb4xM/xudWZfG7VDg3091dyu1/NHnNhHoeY4Q=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
