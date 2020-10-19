@@ -14,6 +14,7 @@ using JGNet.Common;
 using CJBasic;
 using JieXi.Common;
 using CJBasic.Helpers;
+using CJBasic.CJBasic.Helpers;
 
 namespace MergeExcel
 {
@@ -151,7 +152,7 @@ namespace MergeExcel
                 //style1.BorderLeft = BorderStyle.Thin;
                 //style1.BorderRight = BorderStyle.Thin;
                 //style1.BorderTop = BorderStyle.Thin;
-                //style1.WrapText = true;//自动换行
+                //style1.WrapText = true;//自动换行ho
                 //style1.BottomBorderColor = IndexedColors.Black.Index;//设置边框颜色
 
                 //try
@@ -376,6 +377,8 @@ namespace MergeExcel
                                 }
                             }
 
+                            //计算是不是周六周日，还有法定节假日
+                            HolidayHelper.GetHolidayMonth(dateTimePicker1.Value.Year, dateTimePicker1.Value.Month);
                             InitProgress(sheetcopy2.LastRowNum + 1 - 4);
                             for (int r = 4; r < sheetcopy2.LastRowNum + 1; r++)
                             {
@@ -479,9 +482,9 @@ namespace MergeExcel
             }
             else
             {
-                
+                CompleteProgress(); 
                 dataMergedView1.DataSource= NPOIHelper.FormatToDatatable(writeBook, 0);
-                CompleteProgress();
+       
             }
         }
 

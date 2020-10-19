@@ -46,6 +46,9 @@ namespace MergeExcel
             this.skinPanel1 = new CCWin.SkinControl.SkinPanel();
             this.dataMergedView1 = new CJBasic.Widget.DataMergedView();
             this.skinPanel2 = new CCWin.SkinControl.SkinPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnOpen = new System.Windows.Forms.Button();
             this.label1 = new CCWin.SkinControl.SkinLabel();
@@ -54,7 +57,6 @@ namespace MergeExcel
             this.openPath = new System.Windows.Forms.TextBox();
             this.btnOpen2 = new System.Windows.Forms.Button();
             this.savePath = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.skinToolStrip1.SuspendLayout();
             this.skinPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataMergedView1)).BeginInit();
@@ -116,7 +118,7 @@ namespace MergeExcel
             this.skinToolStrip1.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
             this.skinToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.skinToolStrip1.ShowItemToolTips = false;
-            this.skinToolStrip1.Size = new System.Drawing.Size(739, 56);
+            this.skinToolStrip1.Size = new System.Drawing.Size(739, 22);
             this.skinToolStrip1.SkinAllColor = true;
             this.skinToolStrip1.TabIndex = 14;
             this.skinToolStrip1.Text = "skinToolStrip1";
@@ -131,7 +133,7 @@ namespace MergeExcel
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(36, 53);
+            this.toolStripButton1.Size = new System.Drawing.Size(36, 19);
             this.toolStripButton1.Text = "toolStripButton1";
             // 
             // skinPanel1
@@ -142,29 +144,31 @@ namespace MergeExcel
             this.skinPanel1.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.skinPanel1.DownBack = null;
-            this.skinPanel1.Location = new System.Drawing.Point(4, 84);
+            this.skinPanel1.Location = new System.Drawing.Point(4, 50);
             this.skinPanel1.MouseBack = null;
             this.skinPanel1.Name = "skinPanel1";
             this.skinPanel1.NormlBack = null;
-            this.skinPanel1.Size = new System.Drawing.Size(739, 395);
+            this.skinPanel1.Size = new System.Drawing.Size(739, 429);
             this.skinPanel1.TabIndex = 15;
             // 
             // dataMergedView1
             // 
             this.dataMergedView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataMergedView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataMergedView1.Location = new System.Drawing.Point(0, 184);
+            this.dataMergedView1.Location = new System.Drawing.Point(0, 209);
             this.dataMergedView1.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control;
             this.dataMergedView1.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("dataMergedView1.MergeColumnNames")));
             this.dataMergedView1.Name = "dataMergedView1";
             this.dataMergedView1.RowTemplate.Height = 23;
-            this.dataMergedView1.Size = new System.Drawing.Size(739, 211);
+            this.dataMergedView1.Size = new System.Drawing.Size(739, 220);
             this.dataMergedView1.TabIndex = 11;
             // 
             // skinPanel2
             // 
             this.skinPanel2.AutoSize = true;
             this.skinPanel2.BackColor = System.Drawing.Color.Transparent;
+            this.skinPanel2.Controls.Add(this.label2);
+            this.skinPanel2.Controls.Add(this.dateTimePicker1);
             this.skinPanel2.Controls.Add(this.button1);
             this.skinPanel2.Controls.Add(this.btnSave);
             this.skinPanel2.Controls.Add(this.btnOpen);
@@ -181,13 +185,44 @@ namespace MergeExcel
             this.skinPanel2.MouseBack = null;
             this.skinPanel2.Name = "skinPanel2";
             this.skinPanel2.NormlBack = null;
-            this.skinPanel2.Size = new System.Drawing.Size(739, 184);
+            this.skinPanel2.Size = new System.Drawing.Size(739, 209);
             this.skinPanel2.TabIndex = 10;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(154, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "选择月份";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dateTimePicker1.CustomFormat = "yyyy-MM";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(213, 7);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(401, 21);
+            this.dateTimePicker1.TabIndex = 12;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.Location = new System.Drawing.Point(620, 121);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(76, 25);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "打开文件";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnSave
             // 
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSave.Location = new System.Drawing.Point(139, 96);
+            this.btnSave.Location = new System.Drawing.Point(132, 121);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(76, 25);
             this.btnSave.TabIndex = 1;
@@ -199,7 +234,7 @@ namespace MergeExcel
             // 
             this.btnOpen.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnOpen.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnOpen.Location = new System.Drawing.Point(140, 12);
+            this.btnOpen.Location = new System.Drawing.Point(133, 37);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(75, 25);
             this.btnOpen.TabIndex = 0;
@@ -216,7 +251,7 @@ namespace MergeExcel
             this.label1.BorderColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.ForeColor = System.Drawing.Color.Lime;
-            this.label1.Location = new System.Drawing.Point(621, 150);
+            this.label1.Location = new System.Drawing.Point(621, 162);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 19);
             this.label1.TabIndex = 7;
@@ -224,7 +259,7 @@ namespace MergeExcel
             // btnOpreat
             // 
             this.btnOpreat.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnOpreat.Location = new System.Drawing.Point(140, 143);
+            this.btnOpreat.Location = new System.Drawing.Point(133, 168);
             this.btnOpreat.Name = "btnOpreat";
             this.btnOpreat.Size = new System.Drawing.Size(75, 38);
             this.btnOpreat.TabIndex = 2;
@@ -235,7 +270,7 @@ namespace MergeExcel
             // openPath2
             // 
             this.openPath2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.openPath2.Location = new System.Drawing.Point(220, 54);
+            this.openPath2.Location = new System.Drawing.Point(213, 79);
             this.openPath2.Multiline = true;
             this.openPath2.Name = "openPath2";
             this.openPath2.Size = new System.Drawing.Size(401, 24);
@@ -244,7 +279,7 @@ namespace MergeExcel
             // openPath
             // 
             this.openPath.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.openPath.Location = new System.Drawing.Point(221, 13);
+            this.openPath.Location = new System.Drawing.Point(214, 38);
             this.openPath.Multiline = true;
             this.openPath.Name = "openPath";
             this.openPath.Size = new System.Drawing.Size(400, 24);
@@ -254,7 +289,7 @@ namespace MergeExcel
             // 
             this.btnOpen2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnOpen2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnOpen2.Location = new System.Drawing.Point(139, 53);
+            this.btnOpen2.Location = new System.Drawing.Point(132, 78);
             this.btnOpen2.Name = "btnOpen2";
             this.btnOpen2.Size = new System.Drawing.Size(75, 25);
             this.btnOpen2.TabIndex = 5;
@@ -266,22 +301,11 @@ namespace MergeExcel
             // savePath
             // 
             this.savePath.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.savePath.Location = new System.Drawing.Point(221, 96);
+            this.savePath.Location = new System.Drawing.Point(214, 121);
             this.savePath.Multiline = true;
             this.savePath.Name = "savePath";
             this.savePath.Size = new System.Drawing.Size(400, 25);
             this.savePath.TabIndex = 4;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.Location = new System.Drawing.Point(627, 96);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 25);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "打开文件";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Mergeexcel
             // 
@@ -301,12 +325,7 @@ namespace MergeExcel
             ((System.ComponentModel.ISupportInitialize)(this.dataMergedView1)).EndInit();
             this.skinPanel2.ResumeLayout(false);
             this.skinPanel2.PerformLayout();
-            this.ResumeLayout(false); 
-            //System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mergeexcel));
-            s = resources.GetString("String1");
-            y = resources.GetString("String2");
-            g = resources.GetString("String3");
-            a = resources.GetString("String4");
+            this.ResumeLayout(false);
 
         }
         private String s;
@@ -333,6 +352,8 @@ namespace MergeExcel
         private TextBox savePath;
         private ToolStripButton toolStripButton1;
         private Button button1;
+        private DateTimePicker dateTimePicker1;
+        private Label label2;
     }
 
 
