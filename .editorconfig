@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0006: 未能找到元数据文件“D:\BaiduNetdiskDownload\CostumeERP_20200928\JGNet\JGNet.Common\bin\Debug\JGNet.Common.dll”
+dotnet_diagnostic.CS0006.severity = error

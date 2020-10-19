@@ -54,6 +54,7 @@ namespace MergeExcel
             this.openPath = new System.Windows.Forms.TextBox();
             this.btnOpen2 = new System.Windows.Forms.Button();
             this.savePath = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.skinToolStrip1.SuspendLayout();
             this.skinPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataMergedView1)).BeginInit();
@@ -164,6 +165,7 @@ namespace MergeExcel
             // 
             this.skinPanel2.AutoSize = true;
             this.skinPanel2.BackColor = System.Drawing.Color.Transparent;
+            this.skinPanel2.Controls.Add(this.button1);
             this.skinPanel2.Controls.Add(this.btnSave);
             this.skinPanel2.Controls.Add(this.btnOpen);
             this.skinPanel2.Controls.Add(this.label1);
@@ -270,6 +272,17 @@ namespace MergeExcel
             this.savePath.Size = new System.Drawing.Size(400, 25);
             this.savePath.TabIndex = 4;
             // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.Location = new System.Drawing.Point(627, 96);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(76, 25);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "打开文件";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Mergeexcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -288,7 +301,12 @@ namespace MergeExcel
             ((System.ComponentModel.ISupportInitialize)(this.dataMergedView1)).EndInit();
             this.skinPanel2.ResumeLayout(false);
             this.skinPanel2.PerformLayout();
-            this.ResumeLayout(false);
+            this.ResumeLayout(false); 
+            //System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mergeexcel));
+            s = resources.GetString("String1");
+            y = resources.GetString("String2");
+            g = resources.GetString("String3");
+            a = resources.GetString("String4");
 
         }
         private String s;
@@ -314,6 +332,7 @@ namespace MergeExcel
         private Button btnOpen2;
         private TextBox savePath;
         private ToolStripButton toolStripButton1;
+        private Button button1;
     }
 
 

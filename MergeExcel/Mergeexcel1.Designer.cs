@@ -183,7 +183,12 @@ namespace MergeExcel1
             this.skinPanel2.ResumeLayout(false);
             this.skinPanel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
+            this.PerformLayout(); 
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mergeexcel1));
+            s = resources.GetString("String1");
+            y = resources.GetString("String2");
+            g = resources.GetString("String3");
+            a = resources.GetString("String4");
 
         }
         private String s;

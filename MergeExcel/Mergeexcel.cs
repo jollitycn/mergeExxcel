@@ -13,6 +13,7 @@ using CellType = NPOI.SS.UserModel.CellType;
 using JGNet.Common;
 using CJBasic;
 using JieXi.Common;
+using CJBasic.Helpers;
 
 namespace MergeExcel
 {
@@ -412,7 +413,7 @@ namespace MergeExcel
                         writeBook.Write(writeFile);
                         writeFile.Close();
                         
-                        UpdateProgress( "保存成功");
+                       // UpdateProgress( "保存成功");
                     }
                     catch (Exception ex)
                     {
@@ -471,12 +472,14 @@ namespace MergeExcel
 
         private void Complete(IWorkbook writeBook)
         {
+            UpdateProgress("保存成功");
             if (this.InvokeRequired)
             {
                 this.BeginInvoke(new CJBasic.CbGeneric<IWorkbook>(this.Complete), writeBook);
             }
             else
-            { 
+            {
+                
                 dataMergedView1.DataSource= NPOIHelper.FormatToDatatable(writeBook, 0);
                 CompleteProgress();
             }
@@ -699,6 +702,11 @@ namespace MergeExcel
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FileHelper.OpenFileInExplorer(savePath.Text);
         }
     }
 }

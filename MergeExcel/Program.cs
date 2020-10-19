@@ -16,7 +16,7 @@ namespace MergeExcel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Mergeexcel1());
+            Application.Run(new Mergeexcel());
         }
     }
 }

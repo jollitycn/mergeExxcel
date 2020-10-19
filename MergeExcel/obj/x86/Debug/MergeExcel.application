@@ -11,17 +11,17 @@
     <deploymentProvider codebase="http://pc-202001020121/MergeExcel/MergeExcel.application" />
   </deployment>
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.0" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.8" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="MergeExcel.exe.manifest" size="20221">
+    <dependentAssembly dependencyType="install" codebase="MergeExcel.exe.manifest" size="22067">
       <assemblyIdentity name="MergeExcel.exe" version="1.0.0.6" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>bEat0kQedwZ4aKtkDkkrdVenrr0=</dsig:DigestValue>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>lRnBaFuU5+LWJd9SGdeHjfKUWs1FhZEeXYP38b4pucA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

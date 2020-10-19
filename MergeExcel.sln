@@ -13,6 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JGNet.Common", "D:\BaiduNet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JGNet.Core", "D:\BaiduNetdiskDownload\CostumeERP_20200928\JGNet\JGNet.Core\JGNet.Core.csproj", "{94ABC99C-89EC-44FA-8A0E-59FF3EAE4D62}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B0770B6B-F25C-4E59-8348-FABF2EF20BF9}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

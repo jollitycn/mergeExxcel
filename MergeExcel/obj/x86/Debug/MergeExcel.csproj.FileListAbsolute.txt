@@ -211,9 +211,7 @@ C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\CJBas
 C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\JGNet.Common.pdb
 C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\JGNet.Common.dll.config
 C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\JGNet.Core.pdb
-C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\JGNet.Core.dll.config
 C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\BouncyCastle.Crypto.xml
-C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\NPOI.xml
 C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\Spire.License.xml
 C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\Spire.Pdf.xml
 C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\Spire.XLS.xml
@@ -228,3 +226,7 @@ C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\obj\x86\Debug\M
 C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\obj\x86\Debug\MergeExcel.exe
 C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\obj\x86\Debug\MergeExcel.pdb
 C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\obj\x86\Debug\MergeExcel1.Mergeexcel1.resources
+C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\Microsoft.mshtml.dll
+C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\ICSharpCode.SharpZipLib.pdb
+C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\ICSharpCode.SharpZipLib.xml

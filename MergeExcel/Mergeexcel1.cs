@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using System.IO;
-using NPOI.SS.UserModel;
-using NPOI.XSSF.UserModel;
-using NPOI.HSSF.UserModel;
+using System.IO; 
 using System.Data;
 using System.Data.OleDb; 
 using CellType = NPOI.SS.UserModel.CellType;
@@ -14,6 +11,9 @@ using JGNet.Common;
 using CJBasic;
 using JieXi.Common;
 using CJBasic.CJBasic.Helpers;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using NPOI.HSSF.UserModel;
 
 namespace MergeExcel1
 {
@@ -298,10 +298,12 @@ namespace MergeExcel1
                     //商品编码 列
                     int ComcodeCell = 5;
                     int ComnameCell = 35;
-                    for (int i = 0; i < headrow3.LastCellNum; i++)
+                    for (int i = 0; i < headrow3.LastCellNum-1; i++)
                     {
                         //if (!headrow.Cells[i].CellType.Equals(CellType.Numeric))
                         //{
+                        if (headrow3.Cells[i].CellType != CellType.String)
+                            continue;
                         if (headrow3.Cells[i].StringCellValue == "姓名")
                         {
                             ComcodeCell = headrow3.Cells[i].ColumnIndex;
@@ -459,7 +461,7 @@ namespace MergeExcel1
 
         private void ShowError(Exception ex)
         {
-            throw new NotImplementedException();
+            label1.Text = ex.Message;
         }
 
         private void InitProgress(int v)
