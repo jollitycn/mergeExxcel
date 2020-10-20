@@ -119,6 +119,9 @@
     <Reference Include="NPOI.OpenXmlFormats, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
+    <Reference Include="PreEmptive.Attributes, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0a50e0ef4ca013fe">
+      <HintPath>..\packages\PreEmptive.Protection.Checks.Attributes.2.0.0\lib\net11\PreEmptive.Attributes.dll</HintPath>
+    </Reference>
     <Reference Include="Spire.License, Version=1.3.8.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
       <HintPath>..\packages\FreeSpire.XLS.10.1.0\lib\net40\Spire.License.dll</HintPath>
     </Reference>
@@ -323,6 +326,9 @@
       <Project>{94ABC99C-89EC-44FA-8A0E-59FF3EAE4D62}</Project>
       <Name>JGNet.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
