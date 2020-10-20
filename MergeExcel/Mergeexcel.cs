@@ -110,6 +110,7 @@ namespace MergeExcel
             {
                 CompleteProgress();
                 UnLockPage();
+                ShowMessage("保存成功");
             }
         }
 
@@ -117,7 +118,7 @@ namespace MergeExcel
             IWorkbook writeBook = null;
             try
             {
-                 
+
                 label1.Text = string.Empty;
 
                 FileInfo newFile = new FileInfo(localSavePath);
@@ -133,7 +134,7 @@ namespace MergeExcel
                 //  StreamReader sr = new StreamReader(fs, System.Text.Encoding.Default);
                 ////读取Bom表
                 //  FileStream fsRead = System.IO.File.OpenRead(localOpenPath);
-                 writeBook = getPath(localOpenPath, fsRead);
+                writeBook = getPath(localOpenPath, fsRead);
                 //var sheet = writeBook.GetSheetAt(0);
 
 
@@ -208,7 +209,7 @@ namespace MergeExcel
                 IRow headrow = sheetcopy2.GetRow(2);
                 IRow headrow2 = sheetcopy2.GetRow(3);
                 IRow h1 = sheetcopy2.GetRow(1);
-                IRow[] headrows = new IRow[] { headrow , headrow2, h1 };
+                IRow[] headrows = new IRow[] { headrow, headrow2, h1 };
                 ////在最后添加新列
                 //headrow.CreateCell(headrow.LastCellNum).SetCellType(CellType.String);
                 //headrow.GetCell(headrow.LastCellNum - 1).CellStyle = style1;
@@ -226,6 +227,8 @@ namespace MergeExcel
                 int PartCell = 1;
                 int remarkCell = 65;
                 int changeColumn = 38;
+                int leaveC = 8;
+                int startIndexC = 8;
                 //商品编码列
                 //  int code = 0;
 
@@ -239,8 +242,8 @@ namespace MergeExcel
 
                         if (item.Cells[i].CellType != CellType.String)
                             continue;
-                            //item.Cells[i].SetCellType(CellType.String);
-                            if (item.Cells[i].StringCellValue.Trim().Equals("姓名"))
+                        //item.Cells[i].SetCellType(CellType.String);
+                        if (item.Cells[i].StringCellValue.Trim().Equals("姓名"))
                         {
                             PartCell = item.Cells[i].ColumnIndex;
                         }
@@ -248,11 +251,16 @@ namespace MergeExcel
                         {
                             changeColumn = item.Cells[i].ColumnIndex;
                         }
-                        
-                       // item.Cells[i].SetCellType(CellType.String);
+                        if (item.Cells[i].StringCellValue.Trim().Equals("离职日期"))
+                        {
+                            leaveC = item.Cells[i].ColumnIndex;
+                            startIndexC = leaveC + 1;
+                        }
+
+                        // item.Cells[i].SetCellType(CellType.String);
                         if (item.Cells[i].StringCellValue.Trim().Equals("备注"))
                         {
-                            remarkCell =  item.Cells[i].ColumnIndex;
+                            remarkCell = item.Cells[i].ColumnIndex;
                         }
                         //  }
                     }
@@ -316,10 +324,10 @@ namespace MergeExcel
                     //商品编码 列
                     int ComcodeCell = 5;
                     int ComnameCell = 35;
-                    for (int i = 0; i < headrow3.LastCellNum; i++)
+                    for (int i = 0; i < headrow3.LastCellNum-1; i++)
                     {
-                        //if (!headrow.Cells[i].CellType.Equals(CellType.Numeric))
-                        //{
+                        if (headrow3.Cells[i].CellType != CellType.String)
+                            continue;
                         if (headrow3.Cells[i].StringCellValue == "姓名")
                         {
                             ComcodeCell = headrow3.Cells[i].ColumnIndex;
@@ -332,7 +340,7 @@ namespace MergeExcel
                     }
                     Dictionary<String, IRow> myDictionary = new Dictionary<String, IRow>();
                     string a = null;
-                    string b = null; 
+                    string b = null;
                     string md = null;
                     try
                     {
@@ -368,7 +376,8 @@ namespace MergeExcel
                             }
 
                             //d
-                             List<int> holiday = new List<int>();
+                            List<int> holiday = new List<int>();
+                            List<int> ban = new List<int>();
                             //foreach (ICell cell in rowTitle.Cells)
                             //{
                             //    cell.SetCellType(CellType.String);
@@ -379,51 +388,138 @@ namespace MergeExcel
                             //}
 
                             //计算是不是周六周日，还有法定节假日
-                            List<HolidayList> holidayLists=HolidayHelper.GetHolidayMonth(dateTimePicker1.Value.Year, dateTimePicker1.Value.Month);
+
+                            IRow rowTitle = sheetcopy2.GetRow(0);
+                            IRow rowTitle1 = sheetcopy2.GetRow(1);
+                            IRow rowTitle2 = sheetcopy2.GetRow(2);
+                            String workDays = rowTitle.Cells[1].StringCellValue;
+                            String datetime = rowTitle1.Cells[0].ToString();
+                            DateTime dateMonth = DateTime.Parse(datetime);
+                            List<HolidayList> holidayLists = HolidayHelper.GetHolidayMonth(dateMonth.Year, dateMonth.Month);
                             foreach (var item in holidayLists)
                             {
-                                if (item.status == 1) { 
-                               String [] days= item.date.Split('-');
-                                    int day = Int32.Parse(days[days.Length - 1]);
-                                    if(!holiday.Contains(day))
+                                String[] days = item.date.Split('-');
+                                int day = Int32.Parse(days[days.Length - 1]);
+                                if (item.status == 1)
+                                {
+                                    if (!holiday.Contains(day))
                                     {
+
                                         holiday.Add(day);
                                     }
                                 }
-                            }
+                                else
+                                {
+                                    if (!ban.Contains(day))
+                                    {
 
-                            for (int i = 0; i < 31; i++ )
+                                        ban.Add(day);
+                                    }
+                                }
+                            }
+                            
+                            for (int i = 0; i < 31; i++)
                             {
 
-                                DateTime date = DateTime.Parse(dateTimePicker1.Value.Year + "-" + dateTimePicker1.Value.Month + "-" + (i + 1));
+                                DateTime date = DateTime.Parse(dateMonth.Year + "-" + dateMonth.Month + "-" + (i + 1));
+                            
+                                String value = String.Empty;
+                                switch (date.DayOfWeek)
+                                {
+                                    case DayOfWeek.Sunday:
+                                        value = "日";
+                                        break;
+                                    case DayOfWeek.Monday:
+                                        value = "一";
+                                        break;
+                                    case DayOfWeek.Tuesday:
+                                        value = "二";
+                                        break;
+                                    case DayOfWeek.Wednesday:
+                                        value = "三";
+                                        break;
+                                    case DayOfWeek.Thursday:
+                                        value = "四";
+                                        break;
+                                    case DayOfWeek.Friday:
+                                        value = "五";
+                                        break;
+                                    case DayOfWeek.Saturday:
+                                        value = "六";
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                if (changeColumn > startIndexC + i)
+                                {
+                                    rowTitle1.GetCell(startIndexC + i).SetCellValue(value);
+                                }
+
+
                                 if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
                                 {
-                                    if (date.Month == dateTimePicker1.Value.Month)
+                                    if (date.Month == dateMonth.Month)
                                     {
-                                        if (!holiday.Contains(date.Day))
+                                        if (!holiday.Contains(date.Day) && !ban.Contains(date.Day))
                                         {
                                             holiday.Add(date.Day);
                                         }
                                     }
                                 }
                             }
-                            IRow rowTitle = sheetcopy2.GetRow(0);
+
+                            //  style1.FillBackgroundColor = IndexedColors.Blue.Index; 
+                            // cell.CellStyle = style1;
 
 
-                            for( int i = 8; i < changeColumn - 1; i++ )
+                            ICellStyle style = writeBook.CreateCellStyle();
+                            //关键点 IndexedColors.AQUA.getIndex() 对应颜色
+                           // style.FillBackgroundColor=IndexedColors.Black.Index;
+                           // style.setFillPattern(CellStyle.SOLID_FOREGROUND);
+                            for (int i = startIndexC; i < changeColumn ; i++)
                             {
-                                var cell = rowTitle.Cells[i- 1];
-                                // cell.set
-                                 
-                                cell.SetCellValue(String.Empty);
-                                if (holiday.Contains(i - 8 + 1))
+                                var cell = rowTitle.GetCell(i);
+                                var cell1 = rowTitle1.GetCell(i);
+                                var cell2 = rowTitle2.GetCell(i);
+
+                                if (holiday.Contains(i - startIndexC + 1))
                                 {
                                     cell.SetCellValue("假");
-                                }  
-                                
-                                      
-                                } 
-                            InitProgress(sheetcopy2.LastRowNum + 1 - 4);
+                                    //cell.CellStyle = style;
+                                    //cell2.CellStyle = style;
+                                    //cell1.CellStyle = style;
+                                    cell.CellStyle.FillForegroundColor = IndexedColors.SkyBlue.Index;
+                                    //cell.CellStyle.FillBackgroundColor = IndexedColors.SkyBlue.Index;
+                                    cell.CellStyle.FillPattern = FillPattern.SolidForeground;
+                                    cell2.CellStyle.FillForegroundColor = IndexedColors.SkyBlue.Index;
+                                    //cell2.CellStyle.FillBackgroundColor = IndexedColors.SkyBlue.Index;
+                                    cell2.CellStyle.FillPattern = FillPattern.SolidForeground;
+                                    cell1.CellStyle.FillForegroundColor = IndexedColors.SkyBlue.Index;
+                                    //cell1.CellStyle.FillBackgroundColor = IndexedColors.SkyBlue.Index;
+                                    cell1.CellStyle.FillPattern = FillPattern.SolidForeground;
+                                    cell2.SetCellType(CellType.String);
+                                    cell2.SetCellValue(i - startIndexC + 1);
+                                   
+                                }
+                                else
+                                {
+                                    cell.CellStyle.FillForegroundColor = IndexedColors.White.Index;
+                                    //cell.CellStyle.FillBackgroundColor = IndexedColors.White.Index;
+                                    cell.CellStyle.FillPattern = FillPattern.SolidForeground;
+                                    //cell2.CellStyle.FillBackgroundColor = IndexedColors.White.Index;
+                                     cell2.CellStyle.FillForegroundColor = IndexedColors.White.Index;
+                                    cell2.CellStyle.FillPattern = FillPattern.SolidForeground;
+                                //  cell1.CellStyle.FillBackgroundColor = IndexedColors.White.Index;
+                                     cell1.CellStyle.FillForegroundColor = IndexedColors.White.Index;
+                                    cell1.CellStyle.FillPattern = FillPattern.SolidForeground;
+                                    cell.SetCellValue(String.Empty);
+                                    cell2.SetCellType (CellType.String);
+                                    cell2.SetCellValue(i - startIndexC + 1);
+                                    // cell.CellStyle.FillBackgroundColorColor = 
+                                }
+                            }
+                            
+                           InitProgress(sheetcopy2.LastRowNum + 1 - 4);
                             for (int r = 4; r < sheetcopy2.LastRowNum + 1; r++)
                             {
                                 IRow row2 = sheetcopy2.GetRow(r);
@@ -438,9 +534,9 @@ namespace MergeExcel
                                     row = myDictionary[md];
                                     UpdateProgress(md);
                                 }
-                                catch 
-                                {    }
-                                getPath(md, row, row2, holiday, changeColumn - 1, remarkCell);
+                                catch
+                                { }
+                                getPath(startIndexC,md, row, row2, holiday, changeColumn , remarkCell);
                             }
                         }
 
@@ -451,27 +547,22 @@ namespace MergeExcel
                             newFile.Delete();
                         }
                         //创建新表
-                         
+
                         FileStream writeFile = new FileStream(localSavePath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
                         // FileStream writeFile = new FileStream(localSavePath, FileMode.OpenOrCreate);
                         writeFile.Position = 0;
                         // writeBook.w
                         //writeBook.
                         writeBook.Write(writeFile);
+
                         writeFile.Close();
-                        
-                       // UpdateProgress( "保存成功");
-                    }
-                    catch (Exception ex)
-                    {
-                        //label1.ForeColor = Color.Red;
-                        ShowError(ex);
+
+                        // UpdateProgress( "保存成功");
                     }
                     finally
                     {
                         fsRead.Close();
-                        fsRead2.Close(); 
-                        Complete(writeBook);
+                        fsRead2.Close();
                     }
 
 
@@ -510,11 +601,28 @@ namespace MergeExcel
                     //}
                 }
             }
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
                 ShowError(ex);
-             //   label1.Text = ex.Message; 
+                //   label1.Text = ex.Message;     
+
+            }
+            finally {
+                Complete(writeBook);
             }
 
+        }
+
+        private void InitProgress(int num) {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new CJBasic.CbGeneric<int>(this.InitProgress), num);
+            }
+            else
+            {
+                this.dataMergedView1.DataSource = null;
+                base.InitProgress(num);
+            }
         }
 
         private void Complete(IWorkbook writeBook)
@@ -526,45 +634,67 @@ namespace MergeExcel
             }
             else
             {
-                CompleteProgress(); 
-                dataMergedView1.DataSource= NPOIHelper.FormatToDatatable(writeBook, 0);
-       
+                CompleteProgress();
+                FileStream fsRead = null;
+                try
+                {
+                    fsRead = new FileStream(localSavePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+                    fsRead.Position = 0;
+                    //  StreamReader sr = new StreamReader(fs, System.Text.Encoding.Default);
+                    ////读取Bom表
+                    //  FileStream fsRead = System.IO.File.OpenRead(localOpenPath);
+                    writeBook = getPath(localSavePath, fsRead);
+                  //  dataMergedView1.DataSource = NPOIHelper.FormatToDatatable(writeBook, 0);
+                }
+                catch { }
+                finally {
+                    fsRead.Close();
+                } 
             }
         }
 
-        private void getPath(String md,IRow rows, IRow row2, List<int> holiday,int dayEnd, int remark)
+        private void getPath(int leaveC,String md,IRow rows, IRow row2, List<int> holiday,int dayEnd, int remark)
         { 
-                int start = 8;
+                int start = leaveC;
                 int end = dayEnd;
                 int workStart = 6;
                 int workEnd = 36;
-                //
-                //int remark = 41;
+            //
+            //int remark = 41;
 
 
-                row2.GetCell(remark).SetCellValue(String.Empty);
+           //
+            row2.GetCell(remark).SetCellValue(String.Empty);
 
-                foreach (var item in row2.Cells)
+            foreach (var item in row2.Cells)
+            {
+
+                //.Name = "Wingdings";
+
+                //   item.SetCellValue(" ");
+                if (item.ColumnIndex >= start && item.ColumnIndex <= end)
                 {
 
-                    //.Name = "Wingdings";
-
-                    //   item.SetCellValue(" ");
-                    if (item.ColumnIndex >= start && item.ColumnIndex <= end)
+                   item.CellStyle.FillForegroundColor = IndexedColors.White.Index;
+                    //item.CellStyle.FillForegroundColor = IndexedColors.White.Index;
+                   item.CellStyle.FillPattern = FillPattern.SolidForeground;
+                    if (holiday.Contains(item.ColumnIndex - start + 1))
                     {
-                        if (holiday.Contains(item.ColumnIndex))
-                        {
-                            item.SetCellValue(String.Empty);
-                        }
-                        else
+                         item.CellStyle.FillForegroundColor = IndexedColors.SkyBlue.Index;
+                        item.CellStyle.FillPattern = FillPattern.SolidForeground;
+                        //item.CellStyle.FillForegroundColor = IndexedColors.SkyBlue.Index;
+                        item.SetCellValue(String.Empty);
+                    }
+                    else
+                    {
+                        //item.CellStyle.FillBackgroundColor = IndexedColors.White.Index;
+                        item.SetCellValue(g);
+                        if (md.Equals(a) || md.Equals(""))
                         {
                             item.SetCellValue(g);
-                            if (md.Equals(a) || md.Equals(""))
-                            {
-                                item.SetCellValue(g);
-                                return;
-                            }
+                            return;
                         }
+                    }
                     //获取时间
                     String times = null;
                     //try
@@ -574,7 +704,7 @@ namespace MergeExcel
                     //catch { item.SetCellValue(String.Empty); continue; }
 
                 }
-                }
+            }
 
                 if (rows != null)
                 {
@@ -585,7 +715,7 @@ namespace MergeExcel
                         //item.SetCellType(CellType.String); 
 
 
-                        if (item.ColumnIndex >= start && item.ColumnIndex <= end && !holiday.Contains(item.ColumnIndex))
+                        if (item.ColumnIndex >= start && item.ColumnIndex <= end && !holiday.Contains(item.ColumnIndex-  start + 1))
                         {
 
                             //判断迟到早退
