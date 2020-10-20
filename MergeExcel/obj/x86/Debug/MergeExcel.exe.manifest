@@ -197,14 +197,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MergeExcel.exe" size="47616">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MergeExcel.exe" size="48688">
       <assemblyIdentity name="MergeExcel" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vbpmIFDD/TpJ4ro67prLHwrJcKRwdBYNpSHMpLDfwHA=</dsig:DigestValue>
+        <dsig:DigestValue>GwmsC3KvGvS5mkU6HKaqGs61ibDPJAGzpGs0ScJ0bbo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
