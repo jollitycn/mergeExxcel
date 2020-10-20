@@ -885,5 +885,10 @@ namespace MergeExcel
         {
             FileHelper.OpenFileInExplorer(savePath.Text);
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -44,7 +44,6 @@ namespace MergeExcel
             this.skinToolStrip1 = new CCWin.SkinControl.SkinToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.skinPanel1 = new CCWin.SkinControl.SkinPanel();
-            this.dataMergedView1 = new CJBasic.Widget.DataMergedView();
             this.skinPanel2 = new CCWin.SkinControl.SkinPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -57,10 +56,11 @@ namespace MergeExcel
             this.openPath = new System.Windows.Forms.TextBox();
             this.btnOpen2 = new System.Windows.Forms.Button();
             this.savePath = new System.Windows.Forms.TextBox();
+            this.dataMergedView1 = new CJBasic.Widget.DataMergedView();
             this.skinToolStrip1.SuspendLayout();
             this.skinPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataMergedView1)).BeginInit();
             this.skinPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataMergedView1)).BeginInit();
             this.SuspendLayout();
             // 
             // saveFileDialog1
@@ -129,12 +129,14 @@ namespace MergeExcel
             // 
             // toolStripButton1
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(36, 19);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Text = "设置";
+            this.toolStripButton1.Visible = false;
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // skinPanel1
             // 
@@ -151,18 +153,6 @@ namespace MergeExcel
             this.skinPanel1.NormlBack = null;
             this.skinPanel1.Size = new System.Drawing.Size(739, 429);
             this.skinPanel1.TabIndex = 15;
-            // 
-            // dataMergedView1
-            // 
-            this.dataMergedView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataMergedView1.Location = new System.Drawing.Point(0, 404);
-            this.dataMergedView1.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control;
-            this.dataMergedView1.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("dataMergedView1.MergeColumnNames")));
-            this.dataMergedView1.Name = "dataMergedView1";
-            this.dataMergedView1.RowTemplate.Height = 23;
-            this.dataMergedView1.Size = new System.Drawing.Size(115, 25);
-            this.dataMergedView1.TabIndex = 11;
-            this.dataMergedView1.Visible = false;
             // 
             // skinPanel2
             // 
@@ -310,6 +300,18 @@ namespace MergeExcel
             this.savePath.Size = new System.Drawing.Size(400, 25);
             this.savePath.TabIndex = 4;
             // 
+            // dataMergedView1
+            // 
+            this.dataMergedView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataMergedView1.Location = new System.Drawing.Point(0, 404);
+            this.dataMergedView1.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control;
+            this.dataMergedView1.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("dataMergedView1.MergeColumnNames")));
+            this.dataMergedView1.Name = "dataMergedView1";
+            this.dataMergedView1.RowTemplate.Height = 23;
+            this.dataMergedView1.Size = new System.Drawing.Size(115, 25);
+            this.dataMergedView1.TabIndex = 11;
+            this.dataMergedView1.Visible = false;
+            // 
             // Mergeexcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -325,16 +327,11 @@ namespace MergeExcel
             this.skinToolStrip1.PerformLayout();
             this.skinPanel1.ResumeLayout(false);
             this.skinPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataMergedView1)).EndInit();
             this.skinPanel2.ResumeLayout(false);
             this.skinPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataMergedView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-            、、System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mergeexcel));
-            s = resources.GetString("String1");
-            y = resources.GetString("String2");
-            g = resources.GetString("String3");
-            a = resources.GetString("String4");
 
         }
         private String s;

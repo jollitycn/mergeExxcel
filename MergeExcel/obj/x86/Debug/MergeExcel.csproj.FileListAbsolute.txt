@@ -230,3 +230,4 @@ C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\ICSha
 C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\Microsoft.mshtml.dll
 C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\ICSharpCode.SharpZipLib.pdb
 C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\ICSharpCode.SharpZipLib.xml
+C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\obj\x86\Debug\JGNet.Common.SettingForm.resources
