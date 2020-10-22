@@ -204,7 +204,7 @@ namespace MergeExcel
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.Location = new System.Drawing.Point(619, 173);
+            this.button1.Location = new System.Drawing.Point(619, 210);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(76, 25);
             this.button1.TabIndex = 1;
@@ -331,7 +331,12 @@ namespace MergeExcel
             this.skinPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataMergedView1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
+            this.PerformLayout(); 
+            //System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mergeexcel));
+            s = resources.GetString("String1");
+            y = resources.GetString("String2");
+            g = resources.GetString("String3");
+            a = resources.GetString("String4");
 
         }
         private String s;

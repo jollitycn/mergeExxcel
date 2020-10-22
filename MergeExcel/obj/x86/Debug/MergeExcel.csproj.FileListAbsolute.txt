@@ -231,3 +231,10 @@ C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\Micro
 C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\ICSharpCode.SharpZipLib.pdb
 C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\ICSharpCode.SharpZipLib.xml
 C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\obj\x86\Debug\JGNet.Common.SettingForm.resources
+C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\PreEmptive.Attributes.dll
+C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\PreEmptive.Attributes.xml
+C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\OpenXmlUtils.dll
+C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\System.IO.Packaging.dll
+C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\洪思帆\Desktop\MergeExcel-master - 副本\MergeExcel\bin\Debug\System.IO.Packaging.xml

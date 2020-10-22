@@ -16,6 +16,9 @@ using JieXi.Common;
 using CJBasic.Helpers;
 using CJBasic.CJBasic.Helpers;
 using CCWin.SkinClass;
+using NPOI.SS.Formula.Functions;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml;
 
 namespace MergeExcel
 {
@@ -34,6 +37,7 @@ namespace MergeExcel
         {
             InitializeComponent();
         }
+
 
         //打开Bom文件按钮
         private void btnOpen_Click(object sender, EventArgs e)
@@ -114,7 +118,8 @@ namespace MergeExcel
             }
         }
 
-            private void DoShowUnCheck() {
+        private void DoShowUnCheck()
+        {
             IWorkbook writeBook = null;
             try
             {
@@ -127,8 +132,19 @@ namespace MergeExcel
                     newFile.Delete();
                 }
 
-                FileInfo modelFile = new FileInfo(localOpenPath);
-                modelFile.CopyTo(localSavePath);
+                if (Path.GetExtension(localOpenPath).Equals(".xlsm"))
+                {
+                    localOpenPath = ChangeExtension1(localOpenPath);
+                    //FileInfo newFile = new FileInfo(localSavePath);
+                    //if (newFile.Exists)
+                    //{
+                    //    newFile.Delete();
+                    //}
+                    // Path.ChangeExtension("xlsx");
+                }
+
+                // FileInfo modelFile = new FileInfo(localOpenPath);
+                //modelFile.CopyTo(localSavePath);
                 FileStream fsRead = new FileStream(localOpenPath, FileMode.Open, FileAccess.Read, FileShare.Read);
                 fsRead.Position = 0;
                 //  StreamReader sr = new StreamReader(fs, System.Text.Encoding.Default);
@@ -324,7 +340,7 @@ namespace MergeExcel
                     //商品编码 列
                     int ComcodeCell = 5;
                     int ComnameCell = 35;
-                    for (int i = 0; i < headrow3.LastCellNum-1; i++)
+                    for (int i = 0; i < headrow3.LastCellNum - 1; i++)
                     {
                         if (headrow3.Cells[i].CellType != CellType.String)
                             continue;
@@ -393,8 +409,9 @@ namespace MergeExcel
                             IRow rowTitle1 = sheetcopy2.GetRow(1);
                             IRow rowTitle2 = sheetcopy2.GetRow(2);
                             String workDays = rowTitle.Cells[1].StringCellValue;
-                            String datetime = rowTitle1.Cells[0].ToString();
-                            DateTime dateMonth = DateTime.Parse(datetime);
+                            Int32 datetime = Int32.Parse(rowTitle1.Cells[0].NumericCellValue.ToString());
+
+                            DateTime dateMonth = DateTime.Parse("1900/01/01").AddDays(datetime - 1);
                             List<HolidayList> holidayLists = HolidayHelper.GetHolidayMonth(dateMonth.Year, dateMonth.Month);
                             foreach (var item in holidayLists)
                             {
@@ -417,12 +434,12 @@ namespace MergeExcel
                                     }
                                 }
                             }
-                            
+
                             for (int i = 0; i < 31; i++)
                             {
 
                                 DateTime date = DateTime.Parse(dateMonth.Year + "-" + dateMonth.Month + "-" + (i + 1));
-                            
+
                                 String value = String.Empty;
                                 switch (date.DayOfWeek)
                                 {
@@ -474,9 +491,9 @@ namespace MergeExcel
 
                             ICellStyle style = writeBook.CreateCellStyle();
                             //关键点 IndexedColors.AQUA.getIndex() 对应颜色
-                           // style.FillBackgroundColor=IndexedColors.Black.Index;
-                           // style.setFillPattern(CellStyle.SOLID_FOREGROUND);
-                            for (int i = startIndexC; i < changeColumn ; i++)
+                            // style.FillBackgroundColor=IndexedColors.Black.Index;
+                            // style.setFillPattern(CellStyle.SOLID_FOREGROUND);
+                            for (int i = startIndexC; i < changeColumn; i++)
                             {
                                 var cell = rowTitle.GetCell(i);
                                 var cell1 = rowTitle1.GetCell(i);
@@ -499,7 +516,7 @@ namespace MergeExcel
                                     cell1.CellStyle.FillPattern = FillPattern.SolidForeground;
                                     cell2.SetCellType(CellType.String);
                                     cell2.SetCellValue(i - startIndexC + 1);
-                                   
+
                                 }
                                 else
                                 {
@@ -507,19 +524,19 @@ namespace MergeExcel
                                     //cell.CellStyle.FillBackgroundColor = IndexedColors.White.Index;
                                     cell.CellStyle.FillPattern = FillPattern.SolidForeground;
                                     //cell2.CellStyle.FillBackgroundColor = IndexedColors.White.Index;
-                                     cell2.CellStyle.FillForegroundColor = IndexedColors.White.Index;
+                                    cell2.CellStyle.FillForegroundColor = IndexedColors.White.Index;
                                     cell2.CellStyle.FillPattern = FillPattern.SolidForeground;
-                                //  cell1.CellStyle.FillBackgroundColor = IndexedColors.White.Index;
-                                     cell1.CellStyle.FillForegroundColor = IndexedColors.White.Index;
+                                    //  cell1.CellStyle.FillBackgroundColor = IndexedColors.White.Index;
+                                    cell1.CellStyle.FillForegroundColor = IndexedColors.White.Index;
                                     cell1.CellStyle.FillPattern = FillPattern.SolidForeground;
                                     cell.SetCellValue(String.Empty);
-                                    cell2.SetCellType (CellType.String);
+                                    cell2.SetCellType(CellType.String);
                                     cell2.SetCellValue(i - startIndexC + 1);
                                     // cell.CellStyle.FillBackgroundColorColor = 
                                 }
                             }
-                            
-                           InitProgress(sheetcopy2.LastRowNum + 1 - 4);
+
+                            InitProgress(sheetcopy2.LastRowNum + 1 - 4);
                             for (int r = 4; r < sheetcopy2.LastRowNum + 1; r++)
                             {
                                 IRow row2 = sheetcopy2.GetRow(r);
@@ -536,7 +553,7 @@ namespace MergeExcel
                                 }
                                 catch
                                 { }
-                                getPath(startIndexC,md, row, row2, holiday, changeColumn , remarkCell);
+                                getPath(startIndexC, md, row, row2, holiday, changeColumn, remarkCell);
                             }
                         }
 
@@ -561,8 +578,10 @@ namespace MergeExcel
                     }
                     finally
                     {
-                        fsRead.Close();
-                        fsRead2.Close();
+                        if (fsRead != null) { fsRead.Close(); }
+                        if (fsRead2 != null) { fsRead2.Close(); }
+                        //fsRead.Close();
+                        //fsRead2.Close();
                     }
 
 
@@ -600,6 +619,7 @@ namespace MergeExcel
                     //    label1.Text = "请选择正确文件";
                     //}
                 }
+                UpdateProgress("保存成功");
             }
             catch (Exception ex)
             {
@@ -607,13 +627,67 @@ namespace MergeExcel
                 //   label1.Text = ex.Message;     
 
             }
-            finally {
+            finally
+            {
                 Complete(writeBook);
             }
 
         }
 
-        private void InitProgress(int num) {
+        private String ChangeExtension1(String filename)
+        {
+            String newName = filename;
+            byte[] byteArray = File.ReadAllBytes(filename);
+            using (MemoryStream stream = new MemoryStream())
+            {
+                stream.Write(byteArray, 0, (int)byteArray.Length);
+                using (SpreadsheetDocument spreadsheetDoc = SpreadsheetDocument.Open(stream, true))
+                {
+                    // Change from template type to workbook type
+                    spreadsheetDoc.ChangeDocumentType(SpreadsheetDocumentType.Workbook);
+                }
+                File.WriteAllBytes(newName =Path.ChangeExtension(filename, "xlsx"), stream.ToArray());
+            }
+            return newName;
+        }
+
+        private String ChangeExtension(String filename)
+        {
+            String newName = filename;
+            IWorkbook workbook;
+
+            //read original xlsm file into workbook
+            //using (FileStream file = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
+            // { file.Position = 0;
+            //   workbook = new XSSFWorkbook(file);
+
+            FileStream fsRead = new FileStream(localOpenPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            fsRead.Position = 0;
+            //  StreamReader sr = new StreamReader(fs, System.Text.Encoding.Default);
+            ////读取Bom表
+            //  FileStream fsRead = System.IO.File.OpenRead(localOpenPath);
+            workbook = getPath(localOpenPath, fsRead);
+            //} 
+
+            //change file extension to xlsx and save in a new location
+            newName = Path.ChangeExtension(filename, "xlsx");
+            //if (!Directory.Exists("NewFile"))
+            //    Directory.CreateDirectory("NewFile");
+            FileStream stream = new FileStream((newName), FileMode.Create, System.IO.FileAccess.Write);
+            workbook.Write(stream);
+            stream.Close();
+            fsRead.Close();
+
+            ////read the newly created file from the new location
+            //using (FileStream file = new FileStream(@"NewFile\\New" + filename, FileMode.Open, FileAccess.Read))
+            //{ workbook = new XSSFWorkbook(file); }
+            return newName;
+        }
+
+
+
+        private void InitProgress(int num)
+        {
             if (this.InvokeRequired)
             {
                 this.BeginInvoke(new CJBasic.CbGeneric<int>(this.InitProgress), num);
@@ -627,7 +701,6 @@ namespace MergeExcel
 
         private void Complete(IWorkbook writeBook)
         {
-            UpdateProgress("保存成功");
             if (this.InvokeRequired)
             {
                 this.BeginInvoke(new CJBasic.CbGeneric<IWorkbook>(this.Complete), writeBook);
@@ -644,26 +717,28 @@ namespace MergeExcel
                     ////读取Bom表
                     //  FileStream fsRead = System.IO.File.OpenRead(localOpenPath);
                     writeBook = getPath(localSavePath, fsRead);
-                  //  dataMergedView1.DataSource = NPOIHelper.FormatToDatatable(writeBook, 0);
+                    //  dataMergedView1.DataSource = NPOIHelper.FormatToDatatable(writeBook, 0);
                 }
                 catch { }
-                finally {
-                    fsRead.Close();
-                } 
+                finally
+                {
+                    if (fsRead != null) { fsRead.Close(); }
+
+                }
             }
         }
 
-        private void getPath(int leaveC,String md,IRow rows, IRow row2, List<int> holiday,int dayEnd, int remark)
-        { 
-                int start = leaveC;
-                int end = dayEnd;
-                int workStart = 6;
-                int workEnd = 36;
+        private void getPath(int leaveC, String md, IRow rows, IRow row2, List<int> holiday, int dayEnd, int remark)
+        {
+            int start = leaveC;
+            int end = dayEnd;
+            int workStart = 6;
+            int workEnd = 36;
             //
             //int remark = 41;
 
 
-           //
+            //
             row2.GetCell(remark).SetCellValue(String.Empty);
 
             foreach (var item in row2.Cells)
@@ -675,12 +750,12 @@ namespace MergeExcel
                 if (item.ColumnIndex >= start && item.ColumnIndex <= end)
                 {
 
-                   item.CellStyle.FillForegroundColor = IndexedColors.White.Index;
+                    item.CellStyle.FillForegroundColor = IndexedColors.White.Index;
                     //item.CellStyle.FillForegroundColor = IndexedColors.White.Index;
-                   item.CellStyle.FillPattern = FillPattern.SolidForeground;
+                    item.CellStyle.FillPattern = FillPattern.SolidForeground;
                     if (holiday.Contains(item.ColumnIndex - start + 1))
                     {
-                         item.CellStyle.FillForegroundColor = IndexedColors.SkyBlue.Index;
+                        item.CellStyle.FillForegroundColor = IndexedColors.SkyBlue.Index;
                         item.CellStyle.FillPattern = FillPattern.SolidForeground;
                         //item.CellStyle.FillForegroundColor = IndexedColors.SkyBlue.Index;
                         item.SetCellValue(String.Empty);
@@ -706,21 +781,21 @@ namespace MergeExcel
                 }
             }
 
-                if (rows != null)
+            if (rows != null)
+            {
+                for (int i = 0; i < row2.Cells.Count; i++)
                 {
-                    for (int i = 0; i < row2.Cells.Count; i++)
+
+                    ICell item = row2.Cells[i];
+                    //item.SetCellType(CellType.String); 
+
+
+                    if (item.ColumnIndex >= start && item.ColumnIndex <= end && !holiday.Contains(item.ColumnIndex - start + 1))
                     {
 
-                        ICell item = row2.Cells[i];
-                        //item.SetCellType(CellType.String); 
-
-
-                        if (item.ColumnIndex >= start && item.ColumnIndex <= end && !holiday.Contains(item.ColumnIndex-  start + 1))
-                        {
-
-                            //判断迟到早退
-                            //row2.
-                             item.SetCellValue(String.Empty);
+                        //判断迟到早退
+                        //row2.
+                        item.SetCellValue(String.Empty);
 
                         //获取时间
                         String times = null;
@@ -730,116 +805,116 @@ namespace MergeExcel
                         }
                         catch { item.SetCellValue(String.Empty); continue; }
 
-                            if (String.IsNullOrEmpty(times))
-                            {
-                                //item.
-                                //  item.SetCellType(CellType.String);
-                                item.SetCellValue(g);
-                                //   row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号旷工");
+                        if (String.IsNullOrEmpty(times))
+                        {
+                            //item.
+                            //  item.SetCellType(CellType.String);
+                            item.SetCellValue(g);
+                            //   row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号旷工");
 
+                        }
+                        else
+                        {
+                            String[] timeArrays = times.Split('\n');
+
+                            String beginTime = g;
+                            String endTime = g;
+                            String timeFirst = null;
+                            String timeEnd = null;
+                            if (timeArrays.Length < 2)
+                            {
+                                timeFirst = timeArrays[0].Trim().Replace(":", "");
+                                // timeEnd = timeFirst;
                             }
                             else
                             {
-                                String[] timeArrays = times.Split('\n');
+                                timeFirst = timeArrays[0].Trim().Replace(":", "");
+                                timeEnd = timeArrays[timeArrays.Length - 1].Trim().Replace(":", "");
+                            }
 
-                                String beginTime = g;
-                                String endTime = g;
-                                String timeFirst = null;
-                                String timeEnd = null;
-                                if (timeArrays.Length < 2)
+
+                            if (Int32.Parse(timeFirst) <= 1200 && Int32.Parse(timeFirst) > 901)
+                            {
+                                beginTime = s;
+                                row2.GetCell(remark).SetCellValue(row2.GetCell(remark).StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号迟到" + (Int32.Parse(timeFirst) - 900) + "分钟");
+
+                            }
+                            else if (Int32.Parse(timeFirst) >= 1200 && Int32.Parse(timeFirst) < 1300 || Int32.Parse(timeFirst) > 1800 || Int32.Parse(timeFirst) < 1800 && Int32.Parse(timeFirst) >= 1300)
+                            {
+                                beginTime = g;
+                                //row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号缺卡");
+                            }
+                            else
+                            {
+                                beginTime = y;
+                            }
+
+                            if (String.IsNullOrEmpty(timeEnd))
+                            {
+                                if (Int32.Parse(timeFirst) > 1800)
                                 {
-                                    timeFirst = timeArrays[0].Trim().Replace(":", "");
-                                    // timeEnd = timeFirst;
+                                    endTime = y;
+                                }
+                            }
+                            else
+                            {//Int32.Parse(timeEnd) < 1800 && Int32.Parse(timeEnd) > 1300 
+
+                                if (Int32.Parse(timeEnd) > 1700 && Int32.Parse(timeEnd) < 1800)
+                                {
+                                    //if (Int32.Parse(timeEnd) > 1530 && Int32.Parse(timeEnd) < 1800)
+                                    //{
+                                    endTime = s;
+                                    row2.GetCell(remark).SetCellValue(row2.GetCell(remark).StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号早退" + (1800 - Int32.Parse(timeEnd)) + "分钟");
+                                    //}
+                                    //else {
+                                    //    //
+                                    //    endTime = "";
+                                    //}
+                                }
+                                else if (Int32.Parse(timeEnd) < 1800 && Int32.Parse(timeEnd) > 1300 || (Int32.Parse(timeEnd) > 600 && Int32.Parse(timeEnd) < 900))
+                                {
+                                    //有记录就不算旷工
+                                    endTime = g;
+                                    //  row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号缺卡");
                                 }
                                 else
+
                                 {
-                                    timeFirst = timeArrays[0].Trim().Replace(":", "");
-                                    timeEnd = timeArrays[timeArrays.Length - 1].Trim().Replace(":", "");
-                                }
-
-
-                                if (Int32.Parse(timeFirst) <= 1200 && Int32.Parse(timeFirst) > 901)
-                                {
-                                    beginTime = s;
-                                    row2.GetCell(remark).SetCellValue(row2.GetCell(remark).StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号迟到" + (Int32.Parse(timeFirst) - 900) + "分钟");
-
-                                }
-                                else if (Int32.Parse(timeFirst) >= 1200 && Int32.Parse(timeFirst) < 1300 || Int32.Parse(timeFirst) > 1800 || Int32.Parse(timeFirst) < 1800 && Int32.Parse(timeFirst) >= 1300)
-                                {
-                                    beginTime = g;
-                                    //row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号缺卡");
-                                }
-                                else
-                                {
-                                    beginTime = y;
-                                }
-
-                                if (String.IsNullOrEmpty(timeEnd))
-                                {
-                                    if (Int32.Parse(timeFirst) > 1800)
-                                    {
-                                        endTime = y;
-                                    }
-                                }
-                                else
-                                {//Int32.Parse(timeEnd) < 1800 && Int32.Parse(timeEnd) > 1300 
-
-                                    if (Int32.Parse(timeEnd) > 1700 && Int32.Parse(timeEnd) < 1800)
-                                    {
-                                        //if (Int32.Parse(timeEnd) > 1530 && Int32.Parse(timeEnd) < 1800)
-                                        //{
-                                        endTime = s;
-                                        row2.GetCell(remark).SetCellValue(row2.GetCell(remark).StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号早退" + (1800 - Int32.Parse(timeEnd)) + "分钟");
-                                        //}
-                                        //else {
-                                        //    //
-                                        //    endTime = "";
-                                        //}
-                                    }
-                                    else if (Int32.Parse(timeEnd) < 1800 && Int32.Parse(timeEnd) > 1300 || (Int32.Parse(timeEnd) > 600 && Int32.Parse(timeEnd) < 900))
-                                    {
-                                        //有记录就不算旷工
-                                        endTime =g;
-                                        //  row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue + "\n" + (item.ColumnIndex - start + 1) + "号缺卡");
-                                    }
-                                    else
-
-                                    {
-                                        endTime = y;
-                                    }
-                                }
-
-
-
-
-
-
-                                //加班
-                                //if (holiday.Contains(item.ColumnIndex))
-                                //{
-                                //    item.SetCellValue(" ");
-                                //    //if (!beginTime.Equals("口") && !endTime.Equals("口")) { 
-                                //    //row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue +"\n" + (item.ColumnIndex-start+1)+ "日加班");
-                                //    //}
-                                //}
-                                // item.SetCellType(CellType.String);
-                                item.SetCellValue(beginTime + "\n" + endTime);
-                                if (beginTime.Equals(y) && endTime.Equals(y))
-                                {
-                                    item.SetCellValue(y);
+                                    endTime = y;
                                 }
                             }
 
-                            //   // item.SetCellValue("♀");
 
-                            //   //if () { 
-                            //   //}
+
+
+
+
+                            //加班
+                            //if (holiday.Contains(item.ColumnIndex))
+                            //{
+                            //    item.SetCellValue(" ");
+                            //    //if (!beginTime.Equals("口") && !endTime.Equals("口")) { 
+                            //    //row2.Cells[remark].SetCellValue(row2.Cells[remark].StringCellValue +"\n" + (item.ColumnIndex-start+1)+ "日加班");
+                            //    //}
+                            //}
+                            // item.SetCellType(CellType.String);
+                            item.SetCellValue(beginTime + "\n" + endTime);
+                            if (beginTime.Equals(y) && endTime.Equals(y))
+                            {
+                                item.SetCellValue(y);
+                            }
                         }
-                    }
 
+                        //   // item.SetCellValue("♀");
+
+                        //   //if () { 
+                        //   //}
+                    }
                 }
-          
-}
+
+            }
+
+        }
 
 
         //判断Excel文件类型
@@ -850,12 +925,13 @@ namespace MergeExcel
             //获取后缀名
             string extension = strPath.Substring(strPath.LastIndexOf(".")).ToString().ToLower();
             //判断是否是excel文件
-            if (extension == ".xlsx" || extension == ".xls")
+            if (extension == ".xlsx" || extension == ".xlsm" || extension == ".xls")
             {
                 //判断excel的版本
-                if (extension == ".xlsx")
+                if (extension == ".xlsm" || extension == ".xlsx")
                 {
                     wk = new XSSFWorkbook(fsRead);
+                    //
                 }
                 else
                 {
